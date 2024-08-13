@@ -8,6 +8,7 @@
 import Foundation
 
 class URLManger {
+    
     let base = "https://apiv2.allsportsapi.com/"
     let constantKey = "f9711946902cdb48dff17c3fbad39cf22645dcf8d8fc79e58b23a508660c3a8c"
     let allLeagues = "/?met=Leagues"
