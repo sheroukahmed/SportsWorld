@@ -10,6 +10,7 @@ import Alamofire
 
 class Network : Networkprotocol{
     
+    
     func fetch<T: Codable>(url: String, type: T.Type, complitionHandler: @escaping (T?)->Void) {
         let url = URL(string:url)
         guard let URL = url else { return  }

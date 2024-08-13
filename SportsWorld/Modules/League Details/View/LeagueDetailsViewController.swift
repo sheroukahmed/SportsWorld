@@ -12,7 +12,13 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     @IBOutlet weak var FavItem: UIButton!
     
     @IBOutlet weak var collection: UICollectionView!
+    
+    var sport: String!
+    var leagueKey: Int?
+    
     var indicator: UIActivityIndicatorView?
+    
+    var detailsVM : LeagueDetailsViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +29,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         
         collection.dataSource = self
         collection.delegate = self
+        
         
         let layout = UICollectionViewCompositionalLayout {sectionIndex,enviroment in
                     switch sectionIndex {
@@ -84,7 +91,6 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             
             return latestCell
         case 2 :
-            
             return teamCell
             
             

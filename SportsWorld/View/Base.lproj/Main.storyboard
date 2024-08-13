@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GBU-I4-e6P">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -200,7 +200,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="142" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Real_Madrid_CF" translatesAutoresizingMaskIntoConstraints="NO" id="tdX-ef-hme">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Real_Madrid_CF" translatesAutoresizingMaskIntoConstraints="NO" id="tdX-ef-hme">
                                                     <rect key="frame" x="0.0" y="0.0" width="142" height="72"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Madrid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okq-lo-Sd5">
@@ -219,7 +219,7 @@
                                                 <constraint firstItem="tdX-ef-hme" firstAttribute="centerX" secondItem="nEl-yZ-wYD" secondAttribute="centerX" id="938-QJ-VR2"/>
                                                 <constraint firstAttribute="trailing" secondItem="tdX-ef-hme" secondAttribute="trailing" id="JDk-pg-YTu"/>
                                                 <constraint firstItem="tdX-ef-hme" firstAttribute="top" secondItem="nEl-yZ-wYD" secondAttribute="top" id="Qdc-zI-G1U"/>
-                                                <constraint firstItem="Okq-lo-Sd5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nEl-yZ-wYD" secondAttribute="leading" symbolic="YES" id="afc-i5-sPn"/>
+                                                <constraint firstItem="Okq-lo-Sd5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nEl-yZ-wYD" secondAttribute="leading" constant="20" symbolic="YES" id="afc-i5-sPn"/>
                                                 <constraint firstAttribute="trailing" secondItem="Okq-lo-Sd5" secondAttribute="trailing" constant="22.666666666666686" id="e7X-Ic-5gq"/>
                                                 <constraint firstItem="tdX-ef-hme" firstAttribute="leading" secondItem="nEl-yZ-wYD" secondAttribute="leading" id="jH2-Wz-1u4"/>
                                                 <constraint firstItem="Okq-lo-Sd5" firstAttribute="top" secondItem="tdX-ef-hme" secondAttribute="bottom" constant="8" symbolic="YES" id="tQL-Rv-cwt"/>
