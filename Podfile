@@ -7,6 +7,7 @@ target 'SportsWorld' do
 
   # Pods for SportsWorld
 pod 'Alamofire'
+pod 'Kingfisher', '~> 7.0'
 
   target 'SportsWorldTests' do
     inherit! :search_paths
