@@ -16,17 +16,6 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-                   layout.minimumInteritemSpacing = 0
-                   layout.minimumLineSpacing = 0
-               }
-*/
-        
-     //   self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
-      //  collectionView.register(UINib(nibName: "SportsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
 
     }
 
@@ -68,6 +57,7 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
         let leagues = self.storyboard?.instantiateViewController(withIdentifier: "leagues") as! LeaguesTableViewController
         
         leagues.title = sports[indexPath.row].capitalized + " Leagues"
+        leagues.sport = sports[indexPath.row]
         
         //self.present(leagues, animated: true)
         self.navigationController?.pushViewController(leagues, animated: true)

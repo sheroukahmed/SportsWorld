@@ -56,7 +56,7 @@ class CoreDataManager: CoreDataProtocol {
         }
         league.setValue(favLeague.league_name ?? "", forKey: "league_name")
         league.setValue(sport , forKey: "sport")
-        league.setValue(favLeague.league_youtube , forKey: "league_youtube")
+        //league.setValue(favLeague.league_youtube , forKey: "league_youtube")
         do {
             try context.save()
             print("Saved!!")
