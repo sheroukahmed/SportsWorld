@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
@@ -15,6 +16,14 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     
     var sport: String!
     var leagueKey: Int?
+    var teams: [Teams]?
+    var upcomingEvents: [Match]?
+    var latestEvents: [Match]?
+    
+
+    var dummyTeamLogo = "https://cdn-icons-png.freepik.com/512/9192/9192876.png"
+    
+  
     
     var indicator: UIActivityIndicatorView?
     
@@ -22,7 +31,8 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        sport = "football"
+        leagueKey = 3
 //        indicator?.center = self.view.center
 //        indicator?.startAnimating()
 //        self.view.addSubview(indicator!)
@@ -44,9 +54,46 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         collection.setCollectionViewLayout(layout, animated: true)
         
         collection.reloadData()
+        
+        detailsVM = LeagueDetailsViewModel()
+//        detailsVM?.sport = sport
+//        detailsVM?.leagueKey = leagueKey
+        
+        detailsVM?.loadData()
+        
+        detailsVM?.bindResultToViewController = { [weak self] in
+            DispatchQueue.main.async {
+                
+                
+                    guard let self = self else { return }
+                    print("Upcoming Events: \(self.upcomingEvents)")
+                    print("Latest Events: \(self.latestEvents)")
+                  
 
-
-
+                self.upcomingEvents = self.detailsVM?.getUpEvents()
+                self.latestEvents = self.detailsVM?.getLateEvents()
+                
+              
+                for event in self.upcomingEvents ?? [] {
+                    
+                    self.teams?.append(Teams(team_title: event.event_away_team ?? "", team_logo: event.away_team_logo ?? "", team_key: event.away_team_key!))
+                    self.teams?.append(Teams(team_title: event.event_home_team ?? "", team_logo: event.home_team_logo ?? "", team_key: event.home_team_key!))
+                    
+                }
+                
+                for event in self.latestEvents ?? [] {
+                    
+                    self.teams?.append(Teams(team_title: event.event_away_team ?? "", team_logo: event.away_team_logo ?? "", team_key: event.away_team_key!))
+                    self.teams?.append(Teams(team_title: event.event_home_team ?? "", team_logo: event.home_team_logo ?? "", team_key: event.home_team_key!))
+                    
+                }
+                self.teams = Array(Set(self.teams ?? []))
+               
+                self.collection.reloadData()
+            }
+            
+        }
+        
     }
     
 
@@ -59,6 +106,9 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         3
     }
@@ -68,31 +118,55 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         
         switch(section){
         case 0 :
-            return 4
+            return upcomingEvents?.count ?? 1
         case 1 :
-            return 5
+            return latestEvents?.count ?? 1
         case 2 :
-            return 10
+            return teams?.count ?? 1
         default:
-            return 1
+            return 0
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let upcomingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingCell", for: indexPath)
-        let latestCell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestCell", for: indexPath)
-        let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath)
+        let upcomingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "upcomingCell", for: indexPath) as! UpcomingCollectionViewCell
+        let latestCell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestCell", for: indexPath) as! LatestCollectionViewCell
+        let teamCell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as! TeamsCollectionViewCell
         
         switch(indexPath.section){
         case 0 :
             
+            upcomingCell.hometeamlogo.kf.setImage(with: URL(string: upcomingEvents?[indexPath.row].home_team_logo ?? dummyTeamLogo))
+            
+            upcomingCell.awayteamlogo.kf.setImage(with: URL(string: upcomingEvents?[indexPath.row].away_team_logo ??  dummyTeamLogo))
+            
+            upcomingCell.datelabel.text = "\(upcomingEvents?[indexPath.row].event_date ?? "eventDate")"
+            upcomingCell.timelabel.text = "\(upcomingEvents?[indexPath.row].event_time ?? "eventTime")"
+            
+            upcomingCell.hometeamlabel.text = upcomingEvents?[indexPath.row].event_home_team
+            
+            upcomingCell.awayteamlabel.text = upcomingEvents?[indexPath.row].event_away_team
+            
             return upcomingCell
+            
         case 1 :
             
+            latestCell.hometeamlogo.kf.setImage(with: URL(string: latestEvents?[indexPath.row].home_team_logo ??  dummyTeamLogo))
+            latestCell.awayteamlogo.kf.setImage(with: URL(string: latestEvents?[indexPath.row].away_team_logo ?? dummyTeamLogo))
+            latestCell.datelabel.text = "\(latestEvents?[indexPath.row].event_date ?? "eventDate")"
+            latestCell.timelabel.text = "\(latestEvents?[indexPath.row].event_time ?? "eventTime")"
+            
+            latestCell.scorelabel.text = latestEvents?[indexPath.row].event_final_result
+            latestCell.hometeamlabel.text = latestEvents?[indexPath.row].event_home_team
+            latestCell.awayteamlabel.text = latestEvents?[indexPath.row].event_away_team
+           
             return latestCell
         case 2 :
-            return teamCell
             
+            teamCell.teamlogo.kf.setImage(with: URL(string: teams?[indexPath.row].team_logo ?? dummyTeamLogo))
+            teamCell.teamnamelabel.text = teams?[indexPath.row].team_title ?? "Team Name"
+            
+            return teamCell
             
         default:
             return latestCell

@@ -5,64 +5,123 @@
 //  Created by  sherouk ahmed  on 13/08/2024.
 //
 
-import Foundation
 
-class LeagueDetailsViewModel{
-    
+class LeagueDetailsViewModel {
     var network: Networkprotocol?
-    var urlm: URLManger?
-    var bindResultToViewController : (()->()) = {}
+    var bindResultToViewController: (() -> Void) = {}
     var sport: String!
     var leagueKey: Int!
     var coreDataManager: CoreDataProtocol?
-    
-    
+
     init() {
         self.network = Network()
-        self.urlm = URLManger()
         self.coreDataManager = CoreDataManager()
     }
-    
-    
+
     var upEvents: [Match]? {
-        didSet{
-            bindResultToViewController()
-        }
-    }
-    var lateEvents: [Match]? {
-        didSet{
-            bindResultToViewController()
+        didSet {
+            checkIfDataIsFetched()
         }
     }
     
-    func getUpEvents()->[Match]{
+    var lateEvents: [Match]? {
+        didSet {
+            checkIfDataIsFetched()
+        }
+    }
+
+    func getUpEvents() -> [Match] {
         return upEvents ?? []
     }
-    
-    func getLateEvents()->[Match]{
+
+    func getLateEvents() -> [Match] {
         return lateEvents ?? []
     }
-    
-    
-    func loadData(){
-        
-        network?.fetch(url: urlm?.getFullURL(sport: sport, detail: "leagueEvents",leagueKey: leagueKey,eventSelector: .upcoming) ?? "", type: Events.self, complitionHandler:{ [weak self] upcoming in
-            DispatchQueue.main.async {
-                
-                self?.upEvents = upcoming?.result
-                
-            }
-        })
-        
-        network?.fetch(url: urlm?.getFullURL(sport: sport, detail: "leagueEvents",leagueKey: leagueKey,eventSelector: .latest) ?? "", type: Events.self, complitionHandler:{ [weak self] latest in
-            DispatchQueue.main.async {
-                
-                self?.lateEvents = latest?.result
-            }
-        })
-            
-    }
-    
 
-    
+    func loadData() {
+        let upcomingURL = URLManger.getFullURL(sport: "football", detail: "leagueEvents", leagueKey: 3, eventSelector: .upcoming) ?? ""
+        let latestURL = URLManger.getFullURL(sport: "football", detail: "leagueEvents", leagueKey: 3, eventSelector: .latest) ?? ""
+
+        network?.fetch(url: upcomingURL, type: Events.self, complitionHandler: { [weak self] upcoming in
+            self?.upEvents = upcoming?.result
+        })
+
+        network?.fetch(url: latestURL, type: Events.self, complitionHandler: { [weak self] latest in
+            self?.lateEvents = latest?.result
+        })
+    }
+
+    private func checkIfDataIsFetched() {
+        if upEvents != nil && lateEvents != nil {
+            bindResultToViewController()
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+//import Foundation
+//
+//class LeagueDetailsViewModel{
+//
+//    var network: Network?
+//    var bindResultToViewController : (()->()) = {}
+//    var sport: String!
+//    var leagueKey: Int!
+//    var coreDataManager: CoreDataProtocol?
+//
+//
+//    init(network : Network) {
+//        self.network = network
+//        self.coreDataManager = CoreDataManager()
+//    }
+//
+//
+//    var upEvents: [Match]? {
+//        didSet{
+//            bindResultToViewController()
+//        }
+//    }
+//    var lateEvents: [Match]? {
+//        didSet{
+//            bindResultToViewController()
+//        }
+//    }
+//
+//    func getUpEvents()->[Match]{
+//        return upEvents ?? []
+//    }
+//
+//    func getLateEvents()->[Match]{
+//        return lateEvents ?? []
+//    }
+//
+//
+//    func loadData(){
+//
+//        network?.fetch(url: URLManger.getFullURL(sport: "football", detail: "leagueEvents",leagueKey: 3,eventSelector: .upcoming) ?? "", type: Events.self, complitionHandler:{ [weak self] upcoming in
+//            guard let self = self else { return }
+//                if let upcomingEvents = upcoming?.result {
+//                    print("Successfully fetched upcoming events.")
+//                    self.upEvents = upcomingEvents
+//                } else {
+//                    print("No upcoming events found.")
+//                }
+//
+//        })
+//
+//        network?.fetch(url: URLManger.getFullURL(sport: "football", detail: "leagueEvents",leagueKey: 3,eventSelector: .latest) ?? "", type: Events.self, complitionHandler:{ [weak self] latest in
+//                self?.lateEvents = latest?.result
+//        })
+//
+//    }
+//
+//
+//
+//}

@@ -8,6 +8,6 @@
 import Foundation
 
 protocol Networkprotocol {
-    
-    func fetch<T: Codable>(url: String, type: T.Type, complitionHandler: @escaping (T?)->Void)
+
+   func fetch<T: Codable>(url: String, type: T.Type, complitionHandler: @escaping (T?)->Void)
 }
