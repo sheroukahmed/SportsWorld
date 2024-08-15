@@ -84,6 +84,12 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetails = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
+        
+        leagueDetails.sport = self.sport
+        leagueDetails.leagueKey = result?[indexPath.row].league_key
+        leagueDetails.screenTitle = result?[indexPath.row].league_name
+
+        present(leagueDetails, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

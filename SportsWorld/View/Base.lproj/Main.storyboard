@@ -460,22 +460,35 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWb-le-mdL">
+                                <rect key="frame" x="71.666666666666686" y="74" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="v6G-aP-psc"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="zdk-Md-c9d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JnY-i4-SI2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="KbV-6K-yRC" secondAttribute="bottom" id="8Ku-IQ-Bns"/>
                             <constraint firstItem="dfb-LY-a56" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JnY-i4-SI2" secondAttribute="leading" symbolic="YES" id="Ruc-cN-Hw5"/>
+                            <constraint firstItem="HWb-le-mdL" firstAttribute="centerY" secondItem="dfb-LY-a56" secondAttribute="centerY" id="aXa-FO-RCR"/>
                             <constraint firstItem="KbV-6K-yRC" firstAttribute="top" secondItem="JnY-i4-SI2" secondAttribute="top" constant="60" id="cbt-6d-RQ5"/>
                             <constraint firstItem="dfb-LY-a56" firstAttribute="top" secondItem="JnY-i4-SI2" secondAttribute="top" constant="8" id="fsu-nI-RmL"/>
                             <constraint firstItem="JnY-i4-SI2" firstAttribute="trailing" secondItem="dfb-LY-a56" secondAttribute="trailing" constant="13" id="kVE-if-TFK"/>
                             <constraint firstItem="KbV-6K-yRC" firstAttribute="trailing" secondItem="JnY-i4-SI2" secondAttribute="trailing" id="muv-hV-gNW"/>
                             <constraint firstItem="KbV-6K-yRC" firstAttribute="leading" secondItem="JnY-i4-SI2" secondAttribute="leading" id="v0a-v2-ddV"/>
+                            <constraint firstItem="HWb-le-mdL" firstAttribute="centerX" secondItem="JnY-i4-SI2" secondAttribute="centerX" id="vgU-J1-glF"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="FavItem" destination="dfb-LY-a56" id="Zgy-e0-Kht"/>
                         <outlet property="collection" destination="KbV-6K-yRC" id="mF1-wg-JZF"/>
+                        <outlet property="leagueTitle" destination="HWb-le-mdL" id="gek-OI-ehh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Syl-eY-Ylv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
