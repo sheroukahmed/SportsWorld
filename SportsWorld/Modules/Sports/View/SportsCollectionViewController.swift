@@ -58,6 +58,7 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
         
         leagues.title = sports[indexPath.row].capitalized + " Leagues"
         leagues.sport = sports[indexPath.row]
+        leagues.listAllLeagues = true
         
         self.navigationController?.pushViewController(leagues, animated: true)
     }

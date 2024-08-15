@@ -25,7 +25,9 @@ class CoreDataManager: CoreDataProtocol {
     var storedData: [NSManagedObject]?
     var dummyLeagueLogo = "https://static.vecteezy.com/system/resources/previews/029/885/532/non_2x/trophy-icon-illustration-champion-cup-logo-vector.jpg"
     
-    init() {
+    static let shared = CoreDataManager()
+    
+    private init() {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         context = delegate.persistentContainer.viewContext
     }

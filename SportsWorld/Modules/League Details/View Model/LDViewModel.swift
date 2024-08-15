@@ -15,7 +15,7 @@ class LeagueDetailsViewModel {
 
     init() {
         self.network = Network()
-        self.coreDataManager = CoreDataManager()
+        self.coreDataManager = CoreDataManager.shared
     }
 
     var upEvents: [Match]? {
@@ -58,6 +58,15 @@ class LeagueDetailsViewModel {
             bindResultToViewController()
         }
     }
+    
+    func editInCoreData(league: League, sport: String, favourite: Bool){
+        if favourite {
+            coreDataManager?.insertIntoCoreData(favLeague: league, sport: sport)
+        } else {
+            coreDataManager?.deleteFromCoreData(leagueKey: (league.league_key)!, sport: sport)
+        }
+    }
+    
 }
 
 

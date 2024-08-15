@@ -12,13 +12,17 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     
     @IBOutlet weak var leagueTitle: UILabel!
     
-    @IBOutlet weak var FavItem: UIButton!
+    @IBOutlet weak var favItem: UIButton!
+    let heart = UIImage(systemName: "heart") as UIImage?
+    let filledHeart = UIImage(systemName: "heart.fill") as UIImage?
     
     @IBOutlet weak var collection: UICollectionView!
     
     var detailsVM : LeagueDetailsViewModel?
 
+    var isFavourite = false
     var sport: String?
+    var league: League?
     var leagueKey: Int?
     var teams: [Teams]?
     var upcomingEvents: [Match]?
@@ -33,6 +37,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        
         
         leagueTitle.text = screenTitle
 
@@ -225,5 +230,12 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     }
 
     
-
+    @IBAction func favBtn(_ sender: Any) {
+        
+        isFavourite = !isFavourite
+        favItem.setImage(UIImage(systemName: isFavourite ? "heart.fill" : "heart"), for: .normal)
+        
+        detailsVM?.editInCoreData(league: league!, sport: sport!, favourite: isFavourite)
+    }
+    
 }

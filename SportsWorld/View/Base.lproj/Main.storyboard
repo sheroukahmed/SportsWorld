@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gx0-UU-bHH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gx0-UU-bHH">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -110,6 +111,7 @@
                         </imageReference>
                     </tabBarItem>
                     <connections>
+                        <outlet property="noFavouriteImage" destination="qsV-1p-N2g" id="3BN-Dg-EgU"/>
                         <outlet property="tableView" destination="UAY-NK-Do9" id="9el-W6-xOA"/>
                     </connections>
                 </viewController>
@@ -453,6 +455,9 @@
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                <connections>
+                                    <action selector="favBtn:" destination="GBU-I4-e6P" eventType="touchUpInside" id="XDE-pz-N3K"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWb-le-mdL">
                                 <rect key="frame" x="71.666666666666686" y="74" width="250" height="30"/>
@@ -481,8 +486,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="FavItem" destination="dfb-LY-a56" id="Zgy-e0-Kht"/>
                         <outlet property="collection" destination="KbV-6K-yRC" id="mF1-wg-JZF"/>
+                        <outlet property="favItem" destination="dfb-LY-a56" id="c51-S7-Ujx"/>
                         <outlet property="leagueTitle" destination="HWb-le-mdL" id="gek-OI-ehh"/>
                     </connections>
                 </viewController>
