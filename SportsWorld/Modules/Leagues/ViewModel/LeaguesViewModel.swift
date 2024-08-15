@@ -25,8 +25,7 @@ class LeaguesViewModel {
     }
     
     func loadDataFromApi(){
-        let urlManager = URLManger()
-        networkHandler?.fetch(url: urlManager.getFullURL(sport: sport, detail: "allLeagues") , type: Leagues.self, complitionHandler: { [weak self] leagues in
+        networkHandler?.fetch(url: URLManger.getFullURL(sport: sport, detail: "allLeagues") ?? "" , type: Leagues.self, complitionHandler: { [weak self] leagues in
             guard let self = self else { return }
             if let leagues = leagues {
                 self.result = leagues.result

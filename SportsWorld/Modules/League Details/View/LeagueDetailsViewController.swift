@@ -10,35 +10,40 @@ import Kingfisher
 
 class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
+    @IBOutlet weak var leagueTitle: UILabel!
+    
     @IBOutlet weak var FavItem: UIButton!
     
     @IBOutlet weak var collection: UICollectionView!
     
+    var detailsVM : LeagueDetailsViewModel?
+
     var sport: String!
     var leagueKey: Int?
     var teams: [Teams]?
     var upcomingEvents: [Match]?
     var latestEvents: [Match]?
+    var screenTitle: String?
     
-
     var dummyTeamLogo = "https://cdn-icons-png.freepik.com/512/9192/9192876.png"
-    
-  
     
     var indicator: UIActivityIndicatorView?
     
-    var detailsVM : LeagueDetailsViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sport = "football"
-        leagueKey = 3
-//        indicator?.center = self.view.center
-//        indicator?.startAnimating()
-//        self.view.addSubview(indicator!)
+      
+        
+        leagueTitle.text = screenTitle
+
         
         collection.dataSource = self
         collection.delegate = self
+        
+        indicator = UIActivityIndicatorView.init(style: .large)
+        indicator?.center = self.view.center
+        indicator?.startAnimating()
+        self.view.addSubview(indicator!)
         
         
         let layout = UICollectionViewCompositionalLayout {sectionIndex,enviroment in
@@ -53,21 +58,20 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
                 }
         collection.setCollectionViewLayout(layout, animated: true)
         
-        collection.reloadData()
+       // collection.reloadData()
         
         detailsVM = LeagueDetailsViewModel()
-//        detailsVM?.sport = sport
-//        detailsVM?.leagueKey = leagueKey
+
         
         detailsVM?.loadData()
         
         detailsVM?.bindResultToViewController = { [weak self] in
             DispatchQueue.main.async {
+                self?.indicator?.stopAnimating()
                 
-                
-                    guard let self = self else { return }
-                    print("Upcoming Events: \(self.upcomingEvents)")
-                    print("Latest Events: \(self.latestEvents)")
+                guard let self = self else { return }
+                print("Upcoming Events: \(self.upcomingEvents)")
+                print("Latest Events: \(self.latestEvents)")
                   
 
                 self.upcomingEvents = self.detailsVM?.getUpEvents()
@@ -95,19 +99,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         }
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
+   
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         3
