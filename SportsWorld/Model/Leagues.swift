@@ -9,6 +9,7 @@ import Foundation
 
 class Leagues: Codable {
     
+    var success: Int?
     var result: [League]?
     
 }

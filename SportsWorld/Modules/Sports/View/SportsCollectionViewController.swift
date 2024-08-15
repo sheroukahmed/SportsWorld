@@ -11,7 +11,7 @@ private let reuseIdentifier = "Cell"
 
 class SportsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    let sports = ["Football", "Basketball", "Cricket", "Tennis"]
+    let sports = ["football", "basketball", "cricket", "tennis"]
     
     
     override func viewDidLoad() {
@@ -31,9 +31,9 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         
-        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: sports[indexPath.row])
+        (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: sports[indexPath.row].capitalized)
         
-        (cell.viewWithTag(2) as! UILabel).text = sports[indexPath.row]
+        (cell.viewWithTag(2) as! UILabel).text = sports[indexPath.row].capitalized
         
         cell.layer.cornerRadius = 50
 
@@ -54,7 +54,7 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
         }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let leagues = self.storyboard?.instantiateViewController(withIdentifier: "leagues") as! LeaguesTableViewController
+        let leagues = self.storyboard?.instantiateViewController(withIdentifier: "leagues") as! LeaguesViewController
         
         leagues.title = sports[indexPath.row].capitalized + " Leagues"
         leagues.sport = sports[indexPath.row]
