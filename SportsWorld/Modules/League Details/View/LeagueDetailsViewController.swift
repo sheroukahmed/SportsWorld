@@ -18,7 +18,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     
     var detailsVM : LeagueDetailsViewModel?
 
-    var sport: String!
+    var sport: String?
     var leagueKey: Int?
     var teams: [Teams]?
     var upcomingEvents: [Match]?
@@ -61,6 +61,8 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
        // collection.reloadData()
         
         detailsVM = LeagueDetailsViewModel()
+        detailsVM?.sport = sport
+        detailsVM?.leagueKey = leagueKey
 
         
         detailsVM?.loadData()

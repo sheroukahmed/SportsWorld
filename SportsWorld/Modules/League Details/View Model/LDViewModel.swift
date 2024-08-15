@@ -9,8 +9,8 @@
 class LeagueDetailsViewModel {
     var network: Networkprotocol?
     var bindResultToViewController: (() -> Void) = {}
-    var sport: String!
-    var leagueKey: Int!
+    var sport: String?
+    var leagueKey: Int?
     var coreDataManager: CoreDataProtocol?
 
     init() {
@@ -39,8 +39,8 @@ class LeagueDetailsViewModel {
     }
 
     func loadData() {
-        let upcomingURL = URLManger.getFullURL(sport: "football", detail: "leagueEvents", leagueKey: 3, eventSelector: .upcoming) ?? ""
-        let latestURL = URLManger.getFullURL(sport: "football", detail: "leagueEvents", leagueKey: 3, eventSelector: .latest) ?? ""
+        let upcomingURL = URLManger.getFullURL(sport: sport ?? "", detail: "leagueEvents", leagueKey: leagueKey ?? 0, eventSelector: .upcoming) ?? ""
+        let latestURL = URLManger.getFullURL(sport: sport ?? "", detail: "leagueEvents", leagueKey: leagueKey ?? 0, eventSelector: .latest) ?? ""
 
         network?.fetch(url: upcomingURL, type: Events.self, complitionHandler: { [weak self] upcoming in
             self?.upEvents = upcoming?.result
@@ -53,6 +53,8 @@ class LeagueDetailsViewModel {
 
     private func checkIfDataIsFetched() {
         if upEvents != nil && lateEvents != nil {
+            print(upEvents)
+            print(lateEvents)
             bindResultToViewController()
         }
     }
