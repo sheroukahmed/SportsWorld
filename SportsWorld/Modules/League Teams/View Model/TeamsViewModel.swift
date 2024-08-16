@@ -25,6 +25,7 @@ class TeamsViewModel {
     func loadData(){
         
         let url = URLManger.getFullURL(sport: sport ?? "", detail: "team", teamKey: teamKey ?? 0) ?? ""
+        print(url)
         network?.fetch(url: url, type: Teamsres.self, complitionHandler: { team in
             self.result = team?.result?[0]
         })

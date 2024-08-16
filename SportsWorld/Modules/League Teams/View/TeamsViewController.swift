@@ -65,7 +65,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     return UITableViewCell()
                 }
         
-//        cell.playerimage.kf.setImage(with: URL(string: TeamsVM?.result?.players[indexPath.row].player_image ?? "https://b.fssta.com/uploads/application/soccer/headshots/40670.vresize.350.350.medium.91.png"))
+        cell.playerimage.kf.setImage(with: URL(string: TeamsVM?.result?.players[indexPath.row].player_image ?? "https://b.fssta.com/uploads/application/soccer/headshots/40670.vresize.350.350.medium.91.png"))
         
         cell.playernolabel.text = TeamsVM?.result?.players[indexPath.row].player_number ?? "00" + ". "
         cell.playernamelabel.text = TeamsVM?.result?.players[indexPath.row].player_name ?? "Mbappe"
