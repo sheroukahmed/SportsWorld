@@ -13,7 +13,7 @@ class LeagueDetailsViewModel {
     var bindResultToViewController: (() -> Void) = {}
     var sport: String?
     var leagueKey: Int?
-    var coreDataManager: CoreDataProtocol?
+    var coreDataManager: CoreDataManager
 
     var leagueTeams: [hometeam] = []
 
@@ -58,11 +58,12 @@ class LeagueDetailsViewModel {
         }
     }
     
-    func editInCoreData(league: League, sport: String, favourite: Bool) {
-        if favourite {
-            coreDataManager?.insertIntoCoreData(favLeague: league, sport: sport)
+    
+    func editInCoreData(league: League, leagueKey: Int, isFavourite: Bool) {
+        if isFavourite {
+            coreDataManager.removeFromFavourites(leagueKey: leagueKey)
         } else {
-            coreDataManager?.deleteFromCoreData(leagueKey: (league.league_key)!, sport: sport)
+            coreDataManager.addToFavourites(favLeague: league)
         }
     }
 }

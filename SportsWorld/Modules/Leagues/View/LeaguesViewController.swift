@@ -16,49 +16,67 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var noFavouriteImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
-    var listAllLeagues: Bool!
+    
+    var listAllLeagues = false
     var sport: String!
     var leaguesViewModel: LeaguesViewModel?
     var result: [League]?
-    var favouriteLeagues: [NSManagedObject]?
+    var favouriteLeagues = [League]()
     var indicator: UIActivityIndicatorView?
     
     var dummyLeagueLogo = "https://static.vecteezy.com/system/resources/previews/029/885/532/non_2x/trophy-icon-illustration-champion-cup-logo-vector.jpg"
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-
-        indicator = UIActivityIndicatorView.init(style: .large)
-        indicator?.center = self.view.center
-        indicator?.startAnimating()
-        self.view.addSubview(indicator!)
-        
+    
         leaguesViewModel = LeaguesViewModel()
         leaguesViewModel?.sport = sport
         
-        listAllLeagues ? leaguesViewModel?.loadDataFromApi() : leaguesViewModel?.loadDatafromCoreData()
-        
-        leaguesViewModel?.bindResultToViewController = { [weak self] in
-            DispatchQueue.main.async {
-                print("Leagues fetched: \(self?.result?.count ?? 0)")
-                self?.indicator?.stopAnimating()
-                self?.result = self?.leaguesViewModel?.getLeagues()
-                self?.tableView.reloadData()
-            }
-        }
-        
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+                
+        if listAllLeagues {
+            
+            indicator = UIActivityIndicatorView.init(style: .large)
+            indicator?.center = self.view.center
+            indicator?.startAnimating()
+            self.view.addSubview(indicator!)
+           
+            leaguesViewModel?.loadDataFromApi()
+            
+            leaguesViewModel?.bindResultToViewController = { [weak self] in
+                DispatchQueue.main.async {
+                    print("Leagues fetched: \(self?.result?.count ?? 0)")
+                    self?.indicator?.stopAnimating()
+                    self?.result = self?.leaguesViewModel?.getLeagues()
+                    self?.tableView.reloadData()
+                }
+            }
+        } else {
+            favouriteLeagues = leaguesViewModel?.loadDatafromCoreData() ?? []
+            self.indicator?.stopAnimating()
 
+            if favouriteLeagues.count == 0 {
+                noFavouriteImage.isHidden = false
+                tableView.isHidden = true
+            }
+            tableView.reloadData()
+        }
+        
+        tableView.reloadData()
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if listAllLeagues {
             if result?.count == 0 {
@@ -71,48 +89,56 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             return result?.count ?? 0
         } else {
-            if favouriteLeagues?.count == 0 {
-                noFavouriteImage.isHidden = false
-            }
-            return favouriteLeagues?.count ?? 0
+            return favouriteLeagues.count 
         }
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeaguesTableViewCell
         (cell.viewWithTag(1) as! UIImageView).layer.cornerRadius = 30
         cell.layer.cornerRadius = 20
         
         
         if listAllLeagues {
             if let league = result?[indexPath.row] {
+            //    cell.setCell(league: league)
                 (cell.viewWithTag(1) as! UIImageView).kf.setImage(with: URL(string: league.league_logo ?? dummyLeagueLogo))
                 (cell.viewWithTag(2) as! UILabel).text = league.league_name
             }
         } else {
-            if let favLeague = favouriteLeagues?[indexPath.row] {
-                (cell.viewWithTag(1) as! UIImageView).kf.setImage(with: URL(string: favLeague.value(forKey: "league_logo") as? String ?? dummyLeagueLogo ))
-                (cell.viewWithTag(2) as! UILabel).text = favLeague.value(forKey: "league_name") as? String
-            }
+            let favLeague = favouriteLeagues[indexPath.row]
+            //   cell.setCell(league: favLeague)
+            (cell.viewWithTag(1) as! UIImageView).kf.setImage(with: URL(string: favLeague.league_logo ?? dummyLeagueLogo ))
+            (cell.viewWithTag(2) as! UILabel).text = favLeague.league_name
         }
         
         return cell
     }
-   
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if NetworkReachabilityManager()?.isReachable ?? false {
             let leagueDetails = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
             
-            leagueDetails.sport = self.sport
-            leagueDetails.leagueKey = result?[indexPath.row].league_key
-            leagueDetails.screenTitle = result?[indexPath.row].league_name
-            
+            if listAllLeagues {
+                leagueDetails.sport = self.sport
+                leagueDetails.league = result?[indexPath.row]
+                leagueDetails.leagueKey = result?[indexPath.row].league_key
+                leagueDetails.screenTitle = result?[indexPath.row].league_name
+            } else {
+                let favLeague = favouriteLeagues[indexPath.row]
+                leagueDetails.sport = ""
+                leagueDetails.league = favLeague
+                leagueDetails.leagueKey = favLeague.league_key
+                leagueDetails.screenTitle = favLeague.league_name
+            }
             present(leagueDetails, animated: true)
+            
         } else {
             let alert = UIAlertController(title: "Network Error", message: "No network connection found, cannot load data!", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .cancel)
@@ -127,8 +153,9 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
             if editingStyle == .delete {
                 let alert = UIAlertController(title: "Confirmation", message: "Are you sure you want to un-favourite this league?", preferredStyle: .alert)
                 let yes = UIAlertAction(title: "Yes", style: .destructive) { UIAlertAction in
-                    self.leaguesViewModel?.removeFavourite(leagueKey: self.favouriteLeagues?[indexPath.row].value(forKey: "league_key") as! Int, sport: self.favouriteLeagues?[indexPath.row].value(forKey: "sport") as! String)
-                    self.viewDidAppear(true)
+                    self.leaguesViewModel?.removeFavourite(leagueKey: self.favouriteLeagues[indexPath.row].league_key!)
+                    self.favouriteLeagues.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
                 }
                 let no = UIAlertAction(title: "No", style: .cancel)
                 
@@ -139,6 +166,5 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-   
     
 }

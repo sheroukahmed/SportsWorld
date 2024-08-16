@@ -5,6 +5,5 @@
         <attribute name="league_logo" optional="YES" attributeType="String"/>
         <attribute name="league_name" optional="YES" attributeType="String"/>
         <attribute name="league_youtube" optional="YES" attributeType="String"/>
-        <attribute name="sport" optional="YES" attributeType="String"/>
     </entity>
 </model>

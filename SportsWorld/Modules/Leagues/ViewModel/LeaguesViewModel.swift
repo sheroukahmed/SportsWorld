@@ -11,10 +11,10 @@ import CoreData
 class LeaguesViewModel {
     
     var networkHandler: Networkprotocol?
-    var coreDataManager: CoreDataProtocol?
+    var coreDataManager: CoreDataManager
     var bindResultToViewController : (()->()) = {}
     var sport: String!
-    var favResult : [NSManagedObject]?
+    var favResult = [League]()
     var result : [League]?  {
         didSet{
             bindResultToViewController()
@@ -38,30 +38,27 @@ class LeaguesViewModel {
     }
 
     
-    func loadDatafromCoreData(){
-        coreDataManager?.fetchFromCoreData()
-        favResult = coreDataManager!.getStoredData()
+    func loadDatafromCoreData() -> [League] {
+        let storedFavourites = coreDataManager.getFavourites()
         
+        for fav in storedFavourites {
+            let league = League()
+            league.league_name = fav.value(forKey: "league_name") as? String
+            league.league_logo = fav.value(forKey: "league_logo") as? String
+            league.league_key = fav.value(forKey: "league_key") as? Int
+            self.favResult.append(league)
+        }
+        return favResult
     }
     
-    func convertToLeague(nsLeague: NSManagedObject) -> League{
-        let league = League()
-        league.league_name = (nsLeague.value(forKey: "league_name") as! String)
-        league.league_logo = (nsLeague.value(forKey: "league_logo") as! String)
-        league.league_key = (nsLeague.value(forKey: "league_key") as! Int)
-        return league
-    }
     
-    func removeFavourite(leagueKey: Int, sport: String){
-        coreDataManager?.deleteFromCoreData(leagueKey: leagueKey, sport: sport)
-        
+    func removeFavourite(leagueKey: Int) {
+        coreDataManager.removeFromFavourites(leagueKey: leagueKey)
+
     }
+
     
-    func getFavouriteLeagues() -> [NSManagedObject]{
-        return favResult ?? []
-    }
-    
-    func getLeagues()->[League]{
+    func getLeagues() -> [League] {
         return result ?? []
     }
     
