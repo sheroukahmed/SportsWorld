@@ -22,7 +22,6 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
 
     var isFavourited = false
     var sport: String?
-    var league: League?
     var leagueKey: Int?
     var screenTitle: String?
     
@@ -237,7 +236,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             favItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
         
-        detailsVM?.editInCoreData(league: league!, leagueKey: leagueKey!, isFavourite: isFavourited)
+        detailsVM?.editInCoreData(league: (detailsVM?.league)!, leagueKey: leagueKey!, isFavourite: isFavourited)
         
         
     }

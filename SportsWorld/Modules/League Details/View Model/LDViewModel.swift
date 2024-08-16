@@ -12,6 +12,7 @@ class LeagueDetailsViewModel {
     var network: Networkprotocol?
     var bindResultToViewController: (() -> Void) = {}
     var sport: String?
+    var league: League!
     var leagueKey: Int?
     var coreDataManager: CoreDataManager
 
@@ -37,7 +38,6 @@ class LeagueDetailsViewModel {
     func loadData() {
         let upcomingURL = URLManger.getFullURL(sport: sport ?? "", detail: "leagueEvents", leagueKey: leagueKey ?? 0, eventSelector: .upcoming) ?? ""
         let latestURL = URLManger.getFullURL(sport: sport ?? "", detail: "leagueEvents", leagueKey: leagueKey ?? 0, eventSelector: .latest) ?? ""
-        let teamURL = URLManger.getFullURL(sport: sport ?? "", detail: "team", leagueKey: leagueKey ?? 0 , eventSelector: .latest) ?? ""
 
         network?.fetch(url: upcomingURL, type: Events.self, complitionHandler: { [weak self] upcoming in
             self?.upEvents = upcoming?.result

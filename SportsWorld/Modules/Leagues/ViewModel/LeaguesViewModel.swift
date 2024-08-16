@@ -38,7 +38,7 @@ class LeaguesViewModel {
     }
 
     
-    func loadDatafromCoreData() -> [League] {
+    func loadDatafromCoreData() {
         let storedFavourites = coreDataManager.getFavourites()
         
         for fav in storedFavourites {
@@ -48,7 +48,6 @@ class LeaguesViewModel {
             league.league_key = fav.value(forKey: "league_key") as? Int
             self.favResult.append(league)
         }
-        return favResult
     }
     
     
@@ -56,11 +55,15 @@ class LeaguesViewModel {
         coreDataManager.removeFromFavourites(leagueKey: leagueKey)
 
     }
-
     
-    func getLeagues() -> [League] {
-        return result ?? []
+    func loadData(isChecked: Bool) {
+        if isChecked {
+            loadDataFromApi()
+            bindResultToViewController()
+        } else {
+            loadDatafromCoreData()
+        }
+        
     }
-    
     
 }
