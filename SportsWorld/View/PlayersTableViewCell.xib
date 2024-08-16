@@ -9,73 +9,64 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="161" id="KGk-i7-Jjw" customClass="PlayersTableViewCell" customModule="SportsWorld" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="470" height="161"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="playercell" rowHeight="110" id="KGk-i7-Jjw" customClass="PlayersTableViewCell" customModule="SportsWorld" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="369" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="470" height="161"/>
+                <rect key="frame" x="0.0" y="0.0" width="369" height="110"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="I3C-zm-Jba">
-                        <rect key="frame" x="0.0" y="0.0" width="470" height="161"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="images (4)" translatesAutoresizingMaskIntoConstraints="NO" id="c4f-e2-6cC">
+                        <rect key="frame" x="0.0" y="0.0" width="369" height="110"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forward Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JA-Zd-xhg">
+                        <rect key="frame" x="152" y="60" width="117" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cristiano Ronaldo" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hpy-ga-O0W">
+                        <rect key="frame" x="131" y="23" width="169" height="29"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="23"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cristiano 1" translatesAutoresizingMaskIntoConstraints="NO" id="ekw-SE-QBw">
-                        <rect key="frame" x="6" y="12" width="137" height="137"/>
+                        <rect key="frame" x="2" y="2" width="98" height="106"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="137" id="5nf-qK-SFf"/>
-                            <constraint firstAttribute="height" constant="137" id="pKZ-Bl-6uB"/>
+                            <constraint firstAttribute="width" constant="98" id="IMq-91-vdf"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBG-qL-snf">
-                        <rect key="frame" x="403.33333333333331" y="50" width="19.666666666666686" height="61"/>
-                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="50"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JA-Zd-xhg">
-                        <rect key="frame" x="189" y="89" width="151.33333333333337" height="27"/>
-                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="22"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cristiano Ronaldo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpy-ga-O0W">
-                        <rect key="frame" x="155" y="38" width="220" height="37"/>
-                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" fixedFrame="YES" text="7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBG-qL-snf">
+                        <rect key="frame" x="312" y="26" width="49" height="55"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="38"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="ekw-SE-QBw" secondAttribute="bottom" constant="12" id="0Ja-u5-1JQ"/>
-                    <constraint firstItem="EBG-qL-snf" firstAttribute="leading" secondItem="7JA-Zd-xhg" secondAttribute="trailing" constant="63.000000000000057" id="3hd-AU-cQS"/>
-                    <constraint firstItem="ekw-SE-QBw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="FQO-0i-KWi"/>
-                    <constraint firstItem="ekw-SE-QBw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="NLm-km-9Yo"/>
-                    <constraint firstItem="7JA-Zd-xhg" firstAttribute="top" secondItem="Hpy-ga-O0W" secondAttribute="bottom" constant="14" id="Ph1-1D-onI"/>
-                    <constraint firstAttribute="trailing" secondItem="I3C-zm-Jba" secondAttribute="trailing" id="Pvu-7Q-mHw"/>
-                    <constraint firstItem="EBG-qL-snf" firstAttribute="leading" secondItem="Hpy-ga-O0W" secondAttribute="trailing" constant="28.333333333333314" id="Unn-wr-Fij"/>
-                    <constraint firstItem="I3C-zm-Jba" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Z0e-S1-PfI"/>
-                    <constraint firstItem="EBG-qL-snf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="50" id="cKB-wO-l6b"/>
-                    <constraint firstAttribute="trailing" secondItem="EBG-qL-snf" secondAttribute="trailing" constant="47" id="feS-J7-bNA"/>
-                    <constraint firstAttribute="bottom" secondItem="EBG-qL-snf" secondAttribute="bottom" constant="50" id="jZF-5A-Y0Y"/>
-                    <constraint firstAttribute="bottom" secondItem="I3C-zm-Jba" secondAttribute="bottom" id="lru-Sw-hD7"/>
-                    <constraint firstItem="I3C-zm-Jba" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sO8-hh-pQq"/>
-                    <constraint firstItem="Hpy-ga-O0W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="38" id="z8r-Jj-Smm"/>
+                    <constraint firstItem="ekw-SE-QBw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="Lr4-nd-esU"/>
+                    <constraint firstAttribute="bottom" secondItem="ekw-SE-QBw" secondAttribute="bottom" constant="2" id="X3t-Rc-LDt"/>
+                    <constraint firstItem="ekw-SE-QBw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="vcb-bM-W67"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="backimage" destination="I3C-zm-Jba" id="u83-Nt-aDb"/>
                 <outlet property="content" destination="H2p-sc-9uM" id="hvw-Rg-blE"/>
                 <outlet property="playerimage" destination="ekw-SE-QBw" id="VY8-Gn-DsX"/>
                 <outlet property="playernamelabel" destination="Hpy-ga-O0W" id="Jfb-7k-o3Z"/>
                 <outlet property="playernolabel" destination="EBG-qL-snf" id="ELd-Xv-o2S"/>
                 <outlet property="playerpositionlabel" destination="7JA-Zd-xhg" id="759-Ym-aK6"/>
             </connections>
-            <point key="canvasLocation" x="300.76335877862596" y="-30.633802816901412"/>
+            <point key="canvasLocation" x="229.7709923664122" y="-104.22535211267606"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="back" width="612" height="344"/>
         <image name="cristiano 1" width="312" height="369"/>
+        <image name="images (4)" width="300" height="168"/>
     </resources>
 </document>

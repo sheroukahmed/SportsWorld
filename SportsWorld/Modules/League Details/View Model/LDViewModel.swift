@@ -1,9 +1,11 @@
+
 //
 //  LDViewModel.swift
 //  SportsWorld
 //
 //  Created by  sherouk ahmed  on 13/08/2024.
 //
+
 
 
 class LeagueDetailsViewModel {
@@ -13,10 +15,7 @@ class LeagueDetailsViewModel {
     var leagueKey: Int?
     var coreDataManager: CoreDataProtocol?
 
-    init() {
-        self.network = Network()
-        self.coreDataManager = CoreDataManager.shared
-    }
+    var leagueTeams: [hometeam] = []
 
     var upEvents: [Match]? {
         didSet {
@@ -29,18 +28,16 @@ class LeagueDetailsViewModel {
             checkIfDataIsFetched()
         }
     }
-
-    func getUpEvents() -> [Match] {
-        return upEvents ?? []
-    }
-
-    func getLateEvents() -> [Match] {
-        return lateEvents ?? []
+    
+    init() {
+        self.network = Network()
+        self.coreDataManager = CoreDataManager.shared
     }
 
     func loadData() {
         let upcomingURL = URLManger.getFullURL(sport: sport ?? "", detail: "leagueEvents", leagueKey: leagueKey ?? 0, eventSelector: .upcoming) ?? ""
         let latestURL = URLManger.getFullURL(sport: sport ?? "", detail: "leagueEvents", leagueKey: leagueKey ?? 0, eventSelector: .latest) ?? ""
+        let teamURL = URLManger.getFullURL(sport: sport ?? "", detail: "team", leagueKey: leagueKey ?? 0 , eventSelector: .latest) ?? ""
 
         network?.fetch(url: upcomingURL, type: Events.self, complitionHandler: { [weak self] upcoming in
             self?.upEvents = upcoming?.result
@@ -48,91 +45,24 @@ class LeagueDetailsViewModel {
 
         network?.fetch(url: latestURL, type: Events.self, complitionHandler: { [weak self] latest in
             self?.lateEvents = latest?.result
+            for teams in self?.lateEvents ?? [] {
+                self?.leagueTeams.append(hometeam(team_title: teams.event_home_team ?? "", team_logo: teams.home_team_logo ?? "", team_key: teams.home_team_key ?? 0))
+            }
         })
+
     }
 
     private func checkIfDataIsFetched() {
         if upEvents != nil && lateEvents != nil {
-            print(upEvents)
-            print(lateEvents)
             bindResultToViewController()
         }
     }
     
-    func editInCoreData(league: League, sport: String, favourite: Bool){
+    func editInCoreData(league: League, sport: String, favourite: Bool) {
         if favourite {
             coreDataManager?.insertIntoCoreData(favLeague: league, sport: sport)
         } else {
             coreDataManager?.deleteFromCoreData(leagueKey: (league.league_key)!, sport: sport)
         }
     }
-    
 }
-
-
-
-
-
-
-
-
-
-//import Foundation
-//
-//class LeagueDetailsViewModel{
-//
-//    var network: Network?
-//    var bindResultToViewController : (()->()) = {}
-//    var sport: String!
-//    var leagueKey: Int!
-//    var coreDataManager: CoreDataProtocol?
-//
-//
-//    init(network : Network) {
-//        self.network = network
-//        self.coreDataManager = CoreDataManager()
-//    }
-//
-//
-//    var upEvents: [Match]? {
-//        didSet{
-//            bindResultToViewController()
-//        }
-//    }
-//    var lateEvents: [Match]? {
-//        didSet{
-//            bindResultToViewController()
-//        }
-//    }
-//
-//    func getUpEvents()->[Match]{
-//        return upEvents ?? []
-//    }
-//
-//    func getLateEvents()->[Match]{
-//        return lateEvents ?? []
-//    }
-//
-//
-//    func loadData(){
-//
-//        network?.fetch(url: URLManger.getFullURL(sport: "football", detail: "leagueEvents",leagueKey: 3,eventSelector: .upcoming) ?? "", type: Events.self, complitionHandler:{ [weak self] upcoming in
-//            guard let self = self else { return }
-//                if let upcomingEvents = upcoming?.result {
-//                    print("Successfully fetched upcoming events.")
-//                    self.upEvents = upcomingEvents
-//                } else {
-//                    print("No upcoming events found.")
-//                }
-//
-//        })
-//
-//        network?.fetch(url: URLManger.getFullURL(sport: "football", detail: "leagueEvents",leagueKey: 3,eventSelector: .latest) ?? "", type: Events.self, complitionHandler:{ [weak self] latest in
-//                self?.lateEvents = latest?.result
-//        })
-//
-//    }
-//
-//
-//
-//}

@@ -57,6 +57,9 @@ class URLManger {
         class func getAllLeaguesURL(for sport: String) -> String? {
             return base + sport + allLeagues + key + constantKey
         }
+    
+      
+        
         
         class func getFullURL(sport: String, detail: String, leagueKey: Int = 0, eventSelector: EventsSelector = .upcoming, teamKey: Int = 0) -> String? {
             switch detail {

@@ -24,9 +24,6 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     var sport: String?
     var league: League?
     var leagueKey: Int?
-    var teams: [Teams]?
-    var upcomingEvents: [Match]?
-    var latestEvents: [Match]?
     var screenTitle: String?
     
     var dummyTeamLogo = "https://cdn-icons-png.freepik.com/512/9192/9192876.png"
@@ -77,33 +74,12 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
                 self?.indicator?.stopAnimating()
                 
                 guard let self = self else { return }
-                print("Upcoming Events: \(self.upcomingEvents)")
-                print("Latest Events: \(self.latestEvents)")
-                  
-
-                self.upcomingEvents = self.detailsVM?.getUpEvents()
-                self.latestEvents = self.detailsVM?.getLateEvents()
                 
-              
-                for event in self.upcomingEvents ?? [] {
-                    
-                    self.teams?.append(Teams(team_title: event.event_away_team ?? "", team_logo: event.away_team_logo ?? "", team_key: event.away_team_key!))
-                    self.teams?.append(Teams(team_title: event.event_home_team ?? "", team_logo: event.home_team_logo ?? "", team_key: event.home_team_key!))
-                    
-                }
-                
-                for event in self.latestEvents ?? [] {
-                    
-                    self.teams?.append(Teams(team_title: event.event_away_team ?? "", team_logo: event.away_team_logo ?? "", team_key: event.away_team_key!))
-                    self.teams?.append(Teams(team_title: event.event_home_team ?? "", team_logo: event.home_team_logo ?? "", team_key: event.home_team_key!))
-                    
-                }
-                self.teams = Array(Set(self.teams ?? []))
-               
                 self.collection.reloadData()
             }
             
         }
+        detailsVM?.loadData()
         
     }
    
@@ -117,11 +93,11 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         
         switch(section){
         case 0 :
-            return upcomingEvents?.count ?? 1
+            return detailsVM?.upEvents?.count ?? 1
         case 1 :
-            return latestEvents?.count ?? 1
+            return detailsVM?.lateEvents?.count ?? 1
         case 2 :
-            return teams?.count ?? 1
+            return detailsVM?.leagueTeams.count ?? 1
         default:
             return 0
         }
@@ -135,35 +111,35 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         switch(indexPath.section){
         case 0 :
             
-            upcomingCell.hometeamlogo.kf.setImage(with: URL(string: upcomingEvents?[indexPath.row].home_team_logo ?? dummyTeamLogo))
+            upcomingCell.hometeamlogo.kf.setImage(with: URL(string: detailsVM?.upEvents?[indexPath.row].home_team_logo ?? dummyTeamLogo))
             
-            upcomingCell.awayteamlogo.kf.setImage(with: URL(string: upcomingEvents?[indexPath.row].away_team_logo ??  dummyTeamLogo))
+            upcomingCell.awayteamlogo.kf.setImage(with: URL(string: detailsVM?.upEvents?[indexPath.row].away_team_logo ??  dummyTeamLogo))
             
-            upcomingCell.datelabel.text = "\(upcomingEvents?[indexPath.row].event_date ?? "eventDate")"
-            upcomingCell.timelabel.text = "\(upcomingEvents?[indexPath.row].event_time ?? "eventTime")"
+            upcomingCell.datelabel.text = "\(detailsVM?.upEvents?[indexPath.row].event_date ?? "eventDate")"
+            upcomingCell.timelabel.text = "\(detailsVM?.upEvents?[indexPath.row].event_time ?? "eventTime")"
             
-            upcomingCell.hometeamlabel.text = upcomingEvents?[indexPath.row].event_home_team
+            upcomingCell.hometeamlabel.text = detailsVM?.upEvents?[indexPath.row].event_home_team
             
-            upcomingCell.awayteamlabel.text = upcomingEvents?[indexPath.row].event_away_team
+            upcomingCell.awayteamlabel.text = detailsVM?.upEvents?[indexPath.row].event_away_team
             
             return upcomingCell
             
         case 1 :
             
-            latestCell.hometeamlogo.kf.setImage(with: URL(string: latestEvents?[indexPath.row].home_team_logo ??  dummyTeamLogo))
-            latestCell.awayteamlogo.kf.setImage(with: URL(string: latestEvents?[indexPath.row].away_team_logo ?? dummyTeamLogo))
-            latestCell.datelabel.text = "\(latestEvents?[indexPath.row].event_date ?? "eventDate")"
-            latestCell.timelabel.text = "\(latestEvents?[indexPath.row].event_time ?? "eventTime")"
+            latestCell.hometeamlogo.kf.setImage(with: URL(string: detailsVM?.lateEvents?[indexPath.row].home_team_logo ??  dummyTeamLogo))
+            latestCell.awayteamlogo.kf.setImage(with: URL(string: detailsVM?.lateEvents?[indexPath.row].away_team_logo ?? dummyTeamLogo))
+            latestCell.datelabel.text = "\(detailsVM?.lateEvents?[indexPath.row].event_date ?? "eventDate")"
+            latestCell.timelabel.text = "\(detailsVM?.lateEvents?[indexPath.row].event_time ?? "eventTime")"
             
-            latestCell.scorelabel.text = latestEvents?[indexPath.row].event_final_result
-            latestCell.hometeamlabel.text = latestEvents?[indexPath.row].event_home_team
-            latestCell.awayteamlabel.text = latestEvents?[indexPath.row].event_away_team
+            latestCell.scorelabel.text = detailsVM?.lateEvents?[indexPath.row].event_final_result
+            latestCell.hometeamlabel.text = detailsVM?.lateEvents?[indexPath.row].event_home_team
+            latestCell.awayteamlabel.text = detailsVM?.lateEvents?[indexPath.row].event_away_team
            
             return latestCell
         case 2 :
             
-            teamCell.teamlogo.kf.setImage(with: URL(string: teams?[indexPath.row].team_logo ?? dummyTeamLogo))
-            teamCell.teamnamelabel.text = teams?[indexPath.row].team_title ?? "Team Name"
+            teamCell.teamlogo.kf.setImage(with: URL(string: detailsVM?.leagueTeams[indexPath.row].home_team_logo ?? dummyTeamLogo))
+            teamCell.teamnamelabel.text = detailsVM?.leagueTeams[indexPath.row].event_home_team ?? "Team Name"
             
             return teamCell
             
@@ -173,8 +149,15 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         }
     }
     
-    
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 2{
+            let teamScreen = self.storyboard?.instantiateViewController(withIdentifier: "teamDetails") as! TeamsViewController
+            teamScreen.sport = sport
+            teamScreen.teamKey = detailsVM?.leagueTeams[indexPath.row].home_team_key
+            //teamScreen.pageTitle = teams?[indexPath.row].team_title
+            present(teamScreen, animated: true)
+        }
+    }
     
 
     
@@ -215,6 +198,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         return section
     }
+    
     func drawTheBottomSection()-> NSCollectionLayoutSection{
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
