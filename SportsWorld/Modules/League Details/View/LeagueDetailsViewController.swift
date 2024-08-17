@@ -20,9 +20,8 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     
     var detailsVM : LeagueDetailsViewModel?
 
-    var isFavourite = false
+    var isFavourited = false
     var sport: String?
-    var league: League?
     var leagueKey: Int?
     var screenTitle: String?
     
@@ -82,7 +81,10 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         detailsVM?.loadData()
         
     }
-   
+    
+    override func viewWillAppear(_ animated: Bool) {
+       isFavourite()
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         3
@@ -213,13 +215,30 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         return section
     }
 
+    func isFavourite() {
+        let isFavourited = CoreDataManager.shared.isFavourited(leagueKey: leagueKey ?? 0)
+        if isFavourited {
+            favItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
+        else{
+            favItem.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
     
     @IBAction func favBtn(_ sender: Any) {
         
-        isFavourite = !isFavourite
-        favItem.setImage(UIImage(systemName: isFavourite ? "heart.fill" : "heart"), for: .normal)
+        let isFavourited = CoreDataManager.shared.isFavourited(leagueKey: leagueKey ?? 0)
         
-        detailsVM?.editInCoreData(league: league!, sport: sport!, favourite: isFavourite)
+        if isFavourited {
+            favItem.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        else{
+            favItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
+        
+        detailsVM?.editInCoreData(league: (detailsVM?.league)!, leagueKey: leagueKey!, isFavourite: isFavourited)
+        
+        
     }
     
 }

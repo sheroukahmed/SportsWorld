@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gx0-UU-bHH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gx0-UU-bHH">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -28,7 +29,7 @@
                                 <rect key="frame" x="16" y="70" width="361" height="688"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagueCell" rowHeight="80" id="umd-r7-SYP">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagueCell" rowHeight="80" id="umd-r7-SYP" customClass="LeaguesTableViewCell" customModule="SportsWorld" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="361" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="umd-r7-SYP" id="yJa-Fg-QW9">
@@ -81,6 +82,11 @@
                                             <constraint firstItem="hCy-mO-nss" firstAttribute="top" secondItem="umd-r7-SYP" secondAttribute="top" constant="10" id="lZb-Ds-Hpi"/>
                                             <constraint firstItem="hCy-mO-nss" firstAttribute="width" secondItem="umd-r7-SYP" secondAttribute="width" multiplier="0.166205" id="tAP-RP-BSx"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="leagueLogo" destination="hCy-mO-nss" id="ZwL-Dr-fc2"/>
+                                            <outlet property="leagueName" destination="CJq-hB-TTv" id="6sr-rP-3gF"/>
+                                            <outlet property="youtubeButton" destination="D11-0S-B4h" id="0Dz-Rv-9x8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
