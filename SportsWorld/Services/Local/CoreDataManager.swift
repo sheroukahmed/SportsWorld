@@ -56,7 +56,7 @@ class CoreDataManager {
             print(error.localizedDescription)
         }
     }
-    
+    // wana bakhazn el league hakhzn el sport m3aha
     
     func removeFromFavourites(leagueKey: Int) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeagues")

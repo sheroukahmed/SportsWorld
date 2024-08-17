@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gx0-UU-bHH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gx0-UU-bHH">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -26,7 +25,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UAY-NK-Do9">
-                                <rect key="frame" x="16" y="70" width="361" height="688"/>
+                                <rect key="frame" x="16" y="87" width="361" height="671"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagueCell" rowHeight="80" id="umd-r7-SYP" customClass="LeaguesTableViewCell" customModule="SportsWorld" customModuleProvider="target">
@@ -90,19 +89,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dthyfj" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2id-ro-rKS">
+                                <rect key="frame" x="144" y="59.000000000000007" width="105" height="20.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Feq-f2-KHc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="UAY-NK-Do9" firstAttribute="top" secondItem="Feq-f2-KHc" secondAttribute="top" constant="11" id="0Hb-Yn-3g7"/>
+                            <constraint firstItem="UAY-NK-Do9" firstAttribute="top" secondItem="2id-ro-rKS" secondAttribute="bottom" constant="7.6699999999999999" id="0Ld-lj-OrU"/>
                             <constraint firstItem="qsV-1p-N2g" firstAttribute="centerY" secondItem="Feq-f2-KHc" secondAttribute="centerY" id="4GO-b1-PlT"/>
-                            <constraint firstItem="qsV-1p-N2g" firstAttribute="centerX" secondItem="Feq-f2-KHc" secondAttribute="centerX" id="AoM-Vf-OFg"/>
+                            <constraint firstItem="2id-ro-rKS" firstAttribute="top" secondItem="Feq-f2-KHc" secondAttribute="top" id="ByR-24-Ikd"/>
                             <constraint firstItem="Feq-f2-KHc" firstAttribute="trailing" secondItem="qsV-1p-N2g" secondAttribute="trailing" constant="16" id="DXp-Sl-dwb"/>
+                            <constraint firstItem="2id-ro-rKS" firstAttribute="leading" secondItem="Feq-f2-KHc" secondAttribute="leading" constant="144" id="E9X-gv-MKr"/>
                             <constraint firstItem="UAY-NK-Do9" firstAttribute="leading" secondItem="Feq-f2-KHc" secondAttribute="leading" constant="16" id="Vua-Hq-q7Q"/>
-                            <constraint firstItem="UAY-NK-Do9" firstAttribute="centerY" secondItem="Feq-f2-KHc" secondAttribute="centerY" id="WXf-gk-sRn"/>
                             <constraint firstItem="Feq-f2-KHc" firstAttribute="trailing" secondItem="UAY-NK-Do9" secondAttribute="trailing" constant="16" id="hfs-bH-n2I"/>
-                            <constraint firstItem="UAY-NK-Do9" firstAttribute="centerX" secondItem="Feq-f2-KHc" secondAttribute="centerX" id="kgW-kC-8my"/>
+                            <constraint firstItem="UAY-NK-Do9" firstAttribute="centerX" secondItem="Feq-f2-KHc" secondAttribute="centerX" id="sp8-NI-brV"/>
                             <constraint firstItem="qsV-1p-N2g" firstAttribute="leading" secondItem="Feq-f2-KHc" secondAttribute="leading" constant="16" id="vjV-P8-joi"/>
+                            <constraint firstItem="Feq-f2-KHc" firstAttribute="trailing" secondItem="2id-ro-rKS" secondAttribute="trailing" constant="144" id="xJS-UI-Q4c"/>
                             <constraint firstItem="Feq-f2-KHc" firstAttribute="bottom" secondItem="UAY-NK-Do9" secondAttribute="bottom" constant="11" id="ykA-Pd-MK5"/>
                         </constraints>
                     </view>
@@ -116,6 +122,7 @@
                         </imageReference>
                     </tabBarItem>
                     <connections>
+                        <outlet property="favtitle" destination="2id-ro-rKS" id="gWb-Xp-7hh"/>
                         <outlet property="noFavouriteImage" destination="qsV-1p-N2g" id="3BN-Dg-EgU"/>
                         <outlet property="tableView" destination="UAY-NK-Do9" id="9el-W6-xOA"/>
                     </connections>
@@ -422,12 +429,13 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Real_Madrid_CF" translatesAutoresizingMaskIntoConstraints="NO" id="tdX-ef-hme">
                                                     <rect key="frame" x="0.0" y="0.0" width="142" height="72"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Madrid" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okq-lo-Sd5">
-                                                    <rect key="frame" x="28.999999999999993" y="80" width="90.333333333333314" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Madrid" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okq-lo-Sd5">
+                                                    <rect key="frame" x="8" y="80" width="126" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="cfU-gZ-L6P"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="126" id="vbX-bJ-KXv"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -438,9 +446,9 @@
                                                 <constraint firstItem="tdX-ef-hme" firstAttribute="centerX" secondItem="nEl-yZ-wYD" secondAttribute="centerX" id="938-QJ-VR2"/>
                                                 <constraint firstAttribute="trailing" secondItem="tdX-ef-hme" secondAttribute="trailing" id="JDk-pg-YTu"/>
                                                 <constraint firstItem="tdX-ef-hme" firstAttribute="top" secondItem="nEl-yZ-wYD" secondAttribute="top" id="Qdc-zI-G1U"/>
-                                                <constraint firstItem="Okq-lo-Sd5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nEl-yZ-wYD" secondAttribute="leading" constant="20" symbolic="YES" id="afc-i5-sPn"/>
-                                                <constraint firstAttribute="trailing" secondItem="Okq-lo-Sd5" secondAttribute="trailing" constant="22.666666666666686" id="e7X-Ic-5gq"/>
                                                 <constraint firstItem="tdX-ef-hme" firstAttribute="leading" secondItem="nEl-yZ-wYD" secondAttribute="leading" id="jH2-Wz-1u4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Okq-lo-Sd5" secondAttribute="trailing" constant="8" id="l1g-tP-D7u"/>
+                                                <constraint firstItem="Okq-lo-Sd5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nEl-yZ-wYD" secondAttribute="leading" constant="8" id="mBD-ly-1Qg"/>
                                                 <constraint firstItem="Okq-lo-Sd5" firstAttribute="top" secondItem="tdX-ef-hme" secondAttribute="bottom" constant="8" symbolic="YES" id="tQL-Rv-cwt"/>
                                             </constraints>
                                         </collectionViewCellContentView>

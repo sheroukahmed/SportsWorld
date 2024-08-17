@@ -16,21 +16,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="369" height="110"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="images (4)" translatesAutoresizingMaskIntoConstraints="NO" id="c4f-e2-6cC">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images (4)" translatesAutoresizingMaskIntoConstraints="NO" id="c4f-e2-6cC">
                         <rect key="frame" x="0.0" y="0.0" width="369" height="110"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="369" id="dCq-uP-Avf"/>
+                            <constraint firstAttribute="height" constant="110" id="dj2-C2-1bP"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forward Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JA-Zd-xhg">
-                        <rect key="frame" x="152" y="60" width="117" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JA-Zd-xhg">
+                        <rect key="frame" x="154" y="60" width="117" height="21"/>
                         <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cristiano Ronaldo" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hpy-ga-O0W">
-                        <rect key="frame" x="131" y="23" width="169" height="29"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="23"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -40,18 +35,39 @@
                             <constraint firstAttribute="width" constant="98" id="IMq-91-vdf"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" fixedFrame="YES" text="7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBG-qL-snf">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBG-qL-snf">
                         <rect key="frame" x="312" y="26" width="49" height="55"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="38"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="55" id="BY8-aC-5iy"/>
+                            <constraint firstAttribute="width" constant="49" id="pzI-mq-7OD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="35"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cristiano Ronaldo" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hpy-ga-O0W">
+                        <rect key="frame" x="128" y="23" width="169" height="29"/>
+                        <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="23"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="7JA-Zd-xhg" firstAttribute="leading" secondItem="ekw-SE-QBw" secondAttribute="trailing" constant="54" id="Cck-Bv-bH7"/>
+                    <constraint firstItem="7JA-Zd-xhg" firstAttribute="top" secondItem="Hpy-ga-O0W" secondAttribute="bottom" constant="8" symbolic="YES" id="HfE-8t-69g"/>
+                    <constraint firstItem="Hpy-ga-O0W" firstAttribute="leading" secondItem="ekw-SE-QBw" secondAttribute="trailing" constant="28" id="Kyh-39-68G"/>
                     <constraint firstItem="ekw-SE-QBw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="Lr4-nd-esU"/>
+                    <constraint firstItem="EBG-qL-snf" firstAttribute="leading" secondItem="7JA-Zd-xhg" secondAttribute="trailing" constant="41" id="O5f-IO-K0u"/>
+                    <constraint firstAttribute="trailing" secondItem="EBG-qL-snf" secondAttribute="trailing" constant="8" id="Und-qc-1U0"/>
                     <constraint firstAttribute="bottom" secondItem="ekw-SE-QBw" secondAttribute="bottom" constant="2" id="X3t-Rc-LDt"/>
+                    <constraint firstItem="EBG-qL-snf" firstAttribute="leading" secondItem="Hpy-ga-O0W" secondAttribute="trailing" constant="15" id="Xcu-bq-AA6"/>
+                    <constraint firstItem="c4f-e2-6cC" firstAttribute="top" secondItem="Hpy-ga-O0W" secondAttribute="bottom" constant="-52" id="fpA-5j-Wdx"/>
+                    <constraint firstItem="c4f-e2-6cC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hhT-vj-kqY"/>
+                    <constraint firstItem="c4f-e2-6cC" firstAttribute="top" secondItem="EBG-qL-snf" secondAttribute="bottom" constant="-81" id="itD-ga-jaZ"/>
+                    <constraint firstAttribute="trailing" secondItem="c4f-e2-6cC" secondAttribute="trailing" id="jgX-NK-gR5"/>
+                    <constraint firstItem="c4f-e2-6cC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lHO-qS-wvd"/>
                     <constraint firstItem="ekw-SE-QBw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="vcb-bM-W67"/>
+                    <constraint firstAttribute="bottom" secondItem="c4f-e2-6cC" secondAttribute="bottom" id="y0N-cm-tkq"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

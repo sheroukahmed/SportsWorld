@@ -12,7 +12,7 @@ class LeagueDetailsViewModel {
     var network: Networkprotocol?
     var bindResultToViewController: (() -> Void) = {}
     var sport: String?
-    var league: League!
+    var league: League?
     var leagueKey: Int?
     var coreDataManager: CoreDataManager
 
@@ -29,8 +29,16 @@ class LeagueDetailsViewModel {
             checkIfDataIsFetched()
         }
     }
-    
-    init() {
+    init(sport:String? , leagueKey : Int?, league : League?) {
+        self.sport = sport
+        self.leagueKey = leagueKey
+        self.league = league
+        self.network = Network()
+        self.coreDataManager = CoreDataManager.shared
+    }
+    init(leagueKey : Int?, league : League?) {
+        self.leagueKey = leagueKey
+        self.league = league
         self.network = Network()
         self.coreDataManager = CoreDataManager.shared
     }
@@ -57,7 +65,6 @@ class LeagueDetailsViewModel {
             bindResultToViewController()
         }
     }
-    
     
     func editInCoreData(league: League, leagueKey: Int, isFavourite: Bool) {
         if isFavourite {

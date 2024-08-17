@@ -21,9 +21,10 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     var detailsVM : LeagueDetailsViewModel?
 
     var isFavourited = false
-    var sport: String?
     var leagueKey: Int?
     var screenTitle: String?
+   // var league : League?
+    //var sport : String?
     
     var dummyTeamLogo = "https://cdn-icons-png.freepik.com/512/9192/9192876.png"
     
@@ -61,9 +62,10 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         
        // collection.reloadData()
         
-        detailsVM = LeagueDetailsViewModel()
-        detailsVM?.sport = sport
-        detailsVM?.leagueKey = leagueKey
+//        detailsVM = LeagueDetailsViewModel()
+//        detailsVM?.leagueKey = leagueKey
+//        detailsVM?.sport = sport
+        leagueKey = detailsVM?.leagueKey
 
         
         detailsVM?.loadData()
@@ -154,7 +156,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2{
             let teamScreen = self.storyboard?.instantiateViewController(withIdentifier: "teamDetails") as! TeamsViewController
-            teamScreen.sport = sport
+            teamScreen.sport = detailsVM?.sport
             teamScreen.teamKey = detailsVM?.leagueTeams[indexPath.row].home_team_key
             //teamScreen.pageTitle = teams?[indexPath.row].team_title
             present(teamScreen, animated: true)
