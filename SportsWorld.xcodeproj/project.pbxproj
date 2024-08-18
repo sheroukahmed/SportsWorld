@@ -69,7 +69,7 @@
 		26BE0C1E2C6DEFFA00C332C6 /* LeaguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesViewController.swift; sourceTree = "<group>"; };
 		26BE0C692C6F93EA00C332C6 /* LeaguesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesTableViewCell.swift; sourceTree = "<group>"; };
 		26CDA1B42C6AC2AA00C075BA /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		26CDA1B62C6ACB8000C075BA /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = League.swift; path = SportsWorld/Model/League.swift; sourceTree = SOURCE_ROOT; };
+		26CDA1B62C6ACB8000C075BA /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = League.swift; path = SportsWorld/Modules/Leagues/Model/League.swift; sourceTree = SOURCE_ROOT; };
 		26CDA1C42C6BB31400C075BA /* SportsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCollectionViewController.swift; sourceTree = "<group>"; };
 		26CDA1D62C6C0FDA00C075BA /* LeaguesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesViewModel.swift; sourceTree = "<group>"; };
 		26CDA1D92C6C161400C075BA /* Leagues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leagues.swift; sourceTree = "<group>"; };
@@ -208,6 +208,8 @@
 		26CDA1C92C6BB5F100C075BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				26CDA1D92C6C161400C075BA /* Leagues.swift */,
+				26CDA1B62C6ACB8000C075BA /* League.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,8 +369,6 @@
 		F84829292C6AAD1300AA8CFB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				26CDA1B62C6ACB8000C075BA /* League.swift */,
-				26CDA1D92C6C161400C075BA /* Leagues.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
