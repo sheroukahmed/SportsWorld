@@ -38,7 +38,7 @@ class CoreDataManager {
     
     
     
-    func addToFavourites(favLeague: League) {
+    func addToFavourites(favLeague: League, sport: String) {
         let leaguesEntity = NSEntityDescription.entity(forEntityName: "FavouriteLeagues", in: context)
         let league = NSManagedObject(entity: leaguesEntity!, insertInto: context)
         
@@ -47,7 +47,7 @@ class CoreDataManager {
             league.setValue(league_logo.last == "/" ? dummyLeagueLogo : league_logo, forKey: "league_logo")
         }
         league.setValue(favLeague.league_name ?? "", forKey: "league_name")
-       // league.setValue(favLeague.league_youtube , forKey: "league_youtube")
+        league.setValue(sport , forKey: "sport")
         do {
             try context.save()
             print("Saved!!")
@@ -56,7 +56,6 @@ class CoreDataManager {
             print(error.localizedDescription)
         }
     }
-    // wana bakhazn el league hakhzn el sport m3aha
     
     func removeFromFavourites(leagueKey: Int) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeagues")

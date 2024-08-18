@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 private let reuseIdentifier = "Cell"
 
@@ -54,13 +55,20 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
         }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if NetworkReachabilityManager()?.isReachable ?? false {
         let leagues = self.storyboard?.instantiateViewController(withIdentifier: "leagues") as! LeaguesViewController
         
         leagues.title = sports[indexPath.row].capitalized + " Leagues"
-        leagues.sport = sports[indexPath.row]
+        leagues.leaguesViewModel = LeaguesViewModel(sport: sports[indexPath.row])
         leagues.listAllLeagues = true
         
         self.navigationController?.pushViewController(leagues, animated: true)
+        } else {
+            let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(ok)
+            present(alert, animated: true)
+        }
     }
 
 }

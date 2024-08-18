@@ -66,11 +66,12 @@ class LeagueDetailsViewModel {
         }
     }
     
-    func editInCoreData(league: League, leagueKey: Int, isFavourite: Bool) {
+    func editInCoreData(league: League, leagueKey: Int, isFavourite: Bool, sport: String) {
         if isFavourite {
             coreDataManager.removeFromFavourites(leagueKey: leagueKey)
         } else {
-            coreDataManager.addToFavourites(favLeague: league)
+            coreDataManager.addToFavourites(favLeague: league, sport: sport)
         }
     }
+
 }
