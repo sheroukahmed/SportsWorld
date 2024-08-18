@@ -7,24 +7,22 @@
 
 import UIKit
 import Kingfisher
+import Alamofire
 
 class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+   
     
     @IBOutlet weak var leagueTitle: UILabel!
     
     @IBOutlet weak var favItem: UIButton!
-    let heart = UIImage(systemName: "heart") as UIImage?
-    let filledHeart = UIImage(systemName: "heart.fill") as UIImage?
     
     @IBOutlet weak var collection: UICollectionView!
     
     var detailsVM : LeagueDetailsViewModel?
 
     var isFavourited = false
-    var leagueKey: Int?
     var screenTitle: String?
-   // var league : League?
-    //var sport : String?
     
     var dummyTeamLogo = "https://cdn-icons-png.freepik.com/512/9192/9192876.png"
     
@@ -65,7 +63,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
 //        detailsVM = LeagueDetailsViewModel()
 //        detailsVM?.leagueKey = leagueKey
 //        detailsVM?.sport = sport
-        leagueKey = detailsVM?.leagueKey
+//       leagueKey = detailsVM?.leagueKey
 
         
         detailsVM?.loadData()
@@ -143,8 +141,12 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         case 2 :
             
             teamCell.teamlogo.kf.setImage(with: URL(string: detailsVM?.leagueTeams[indexPath.row].home_team_logo ?? dummyTeamLogo))
+            (teamCell.viewWithTag(1) as! UIImageView).layer.cornerRadius = 37
+            (teamCell.viewWithTag(1) as! UIImageView).backgroundColor = .white
+
             teamCell.teamnamelabel.text = detailsVM?.leagueTeams[indexPath.row].event_home_team ?? "Team Name"
-            
+            teamCell.layer.cornerRadius = 70
+
             return teamCell
             
         default:
@@ -154,12 +156,19 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 2{
-            let teamScreen = self.storyboard?.instantiateViewController(withIdentifier: "teamDetails") as! TeamsViewController
-            teamScreen.sport = detailsVM?.sport
-            teamScreen.teamKey = detailsVM?.leagueTeams[indexPath.row].home_team_key
-            //teamScreen.pageTitle = teams?[indexPath.row].team_title
-            present(teamScreen, animated: true)
+        if indexPath.section == 2 {
+            if NetworkReachabilityManager()?.isReachable ?? false {
+                let teamScreen = self.storyboard?.instantiateViewController(withIdentifier: "teamDetails") as! TeamsViewController
+                teamScreen.sport = detailsVM?.sport
+                teamScreen.teamKey = detailsVM?.leagueTeams[indexPath.row].home_team_key
+                //teamScreen.pageTitle = teams?[indexPath.row].team_title
+                present(teamScreen, animated: true)
+            } else {
+                let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .cancel)
+                alert.addAction(ok)
+                present(alert, animated: true)
+            }
         }
     }
     
@@ -207,7 +216,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .absolute(100))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(150), heightDimension: .absolute(150))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16)
         let section = NSCollectionLayoutSection(group: group)
@@ -218,7 +227,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     }
 
     func isFavourite() {
-        let isFavourited = CoreDataManager.shared.isFavourited(leagueKey: leagueKey ?? 0)
+        let isFavourited = CoreDataManager.shared.isFavourited(leagueKey: detailsVM?.leagueKey ?? 0)
         if isFavourited {
             favItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
@@ -229,7 +238,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     
     @IBAction func favBtn(_ sender: Any) {
         
-        let isFavourited = CoreDataManager.shared.isFavourited(leagueKey: leagueKey ?? 0)
+        let isFavourited = CoreDataManager.shared.isFavourited(leagueKey: detailsVM?.leagueKey ?? 0)
         
         if isFavourited {
             favItem.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -238,9 +247,12 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             favItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
         
-        detailsVM?.editInCoreData(league: (detailsVM?.league)!, leagueKey: leagueKey!, isFavourite: isFavourited)
+        detailsVM?.editInCoreData(league: (detailsVM?.league)!, leagueKey: detailsVM?.leagueKey ?? 0, isFavourite: isFavourited, sport: (detailsVM?.sport) ?? "")
         
-        
+    }
+    
+    @IBAction func dismissButton(_ sender: Any) {
+        dismiss(animated: true)
     }
     
 }

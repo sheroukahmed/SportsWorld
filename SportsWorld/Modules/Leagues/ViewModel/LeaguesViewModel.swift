@@ -34,6 +34,8 @@ class LeaguesViewModel {
             }
         })
     }
+    
+
 
     
 //    func loadDatafromCoreData() {
