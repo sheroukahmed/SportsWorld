@@ -23,7 +23,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
 
     var isFavourited = false
     var screenTitle: String?
-    
+    var sport : String?
     var dummyTeamLogo = "https://cdn-icons-png.freepik.com/512/9192/9192876.png"
     
     var indicator: UIActivityIndicatorView?
@@ -32,7 +32,8 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        
+        collection.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+
         
         leagueTitle.text = screenTitle
 
@@ -58,13 +59,6 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
                 }
         collection.setCollectionViewLayout(layout, animated: true)
         
-       // collection.reloadData()
-        
-//        detailsVM = LeagueDetailsViewModel()
-//        detailsVM?.leagueKey = leagueKey
-//        detailsVM?.sport = sport
-//       leagueKey = detailsVM?.leagueKey
-
         
         detailsVM?.loadData()
         
@@ -155,6 +149,29 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             
         }
     }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            fatalError("Unexpected element kind")
+        }
+        
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! SectionHeader
+        
+        switch indexPath.section {
+        case 0:
+            header.setText("Up Coming")
+            
+        case 1:
+            header.setText("Latest")
+           
+        case 2:
+            header.setText("Teams")
+        default:
+            header.setText("Default Header")
+            header.backgroundColor = .gray
+        }
+        
+        return header
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
@@ -195,8 +212,15 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
                 item.transform = CGAffineTransform(scaleX: scale, y: scale)
             }
         }
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .absolute(50))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
         
-        
+        section.boundarySupplementaryItems = [header]
+
         return section
     }
     
@@ -210,6 +234,15 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .absolute(50))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        
+        section.boundarySupplementaryItems = [header]
+
         return section
     }
     
@@ -224,11 +257,21 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 8, bottom: 16, trailing: 0)
         
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .absolute(50))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        
+        section.boundarySupplementaryItems = [header]
+        
         return section
     }
 
     func isFavourite() {
         let isFavourited = CoreDataManager.shared.isFavourited(leagueKey: detailsVM?.leagueKey ?? 0)
+        
         if isFavourited {
             favItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }

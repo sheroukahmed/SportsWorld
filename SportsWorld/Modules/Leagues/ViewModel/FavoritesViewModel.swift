@@ -27,6 +27,7 @@ class FavouritesViewModel {
         
         for fav in storedFavourites {
             let league = League()
+            self.sport = fav.value(forKey: "sport") as? String
             league.league_name = fav.value(forKey: "league_name") as? String
             league.league_logo = fav.value(forKey: "league_logo") as? String
             league.league_key = fav.value(forKey: "league_key") as? Int

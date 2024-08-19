@@ -121,7 +121,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
             } else {
                 let favLeague = favoritesViewModel.result?[indexPath.row]
-                leagueDetails.detailsVM = LeagueDetailsViewModel(leagueKey: favLeague?.league_key, league: favLeague)
+                leagueDetails.detailsVM = LeagueDetailsViewModel(sport: favoritesViewModel.sport, leagueKey: favLeague?.league_key, league: favLeague)
                 leagueDetails.screenTitle = favLeague?.league_name
             }
             present(leagueDetails, animated: true)

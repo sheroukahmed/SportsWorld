@@ -52,6 +52,7 @@
 		F8A542472C6F3DD00023FE2F /* Teamsres.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A542462C6F3DD00023FE2F /* Teamsres.swift */; };
 		F8A542492C6F46640023FE2F /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A542482C6F46630023FE2F /* Players.swift */; };
 		F8A5424B2C6F51770023FE2F /* hometeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5424A2C6F51770023FE2F /* hometeams.swift */; };
+		F8B820EA2C73C91F00362EDB /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B820E92C73C91F00362EDB /* SectionHeader.swift */; };
 		F8D0F8382C6B851900D15366 /* LeagueDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D0F8372C6B851900D15366 /* LeagueDetailsViewController.swift */; };
 		F8DEC1862C70E83B00E498F7 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEC1852C70E83B00E498F7 /* FavoritesViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -129,6 +130,7 @@
 		F8A542462C6F3DD00023FE2F /* Teamsres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teamsres.swift; sourceTree = "<group>"; };
 		F8A542482C6F46630023FE2F /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		F8A5424A2C6F51770023FE2F /* hometeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hometeams.swift; sourceTree = "<group>"; };
+		F8B820E92C73C91F00362EDB /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		F8D0F8372C6B851900D15366 /* LeagueDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewController.swift; sourceTree = "<group>"; };
 		F8DEC1852C70E83B00E498F7 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -442,6 +444,7 @@
 				F802BABE2C6D006900E2217C /* UpcomingCollectionViewCell.swift */,
 				F802BAC02C6D00AA00E2217C /* LatestCollectionViewCell.swift */,
 				F802BAC22C6D00BE00E2217C /* TeamsCollectionViewCell.swift */,
+				F8B820E92C73C91F00362EDB /* SectionHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 			files = (
 				F8DEC1862C70E83B00E498F7 /* FavoritesViewModel.swift in Sources */,
 				F81FF3C52C6C22B1002280FE /* Teams.swift in Sources */,
+				F8B820EA2C73C91F00362EDB /* SectionHeader.swift in Sources */,
 				F81FF3BF2C6BE9DA002280FE /* Events.swift in Sources */,
 				F8A542492C6F46640023FE2F /* Players.swift in Sources */,
 				26BE0C6E2C728D3C00C332C6 /* LeaguesTableViewCell.swift in Sources */,
