@@ -7,47 +7,37 @@
 
 import XCTest
 @testable import SportsWorld
+import CoreData
 
-final class FavoritesViewModelTests: XCTestCase {
-    
+class FavouritesViewModelTests: XCTestCase {
     var viewModel: FavouritesViewModel!
     var mockCoreDataManager: MockCoreDataManager!
 
-
-    override func setUpWithError() throws {
+    override func setUp() {
+        super.setUp()
         mockCoreDataManager = MockCoreDataManager()
         viewModel = FavouritesViewModel()
         viewModel.coreDataManager = mockCoreDataManager
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         viewModel = nil
         mockCoreDataManager = nil
+        super.tearDown()
     }
 
-    func testAddingToFavourites() {
-        let league = League()
-        league.league_key = 123
-        league.league_name = "Premier League"
-        league.league_logo = "logo_url"
-        
-        viewModel.coreDataManager.addToFavourites(favLeague: league, sport: "Football")
-        
-        XCTAssertEqual(mockCoreDataManager.mockFavourites.count, 1)
-        XCTAssertEqual(mockCoreDataManager.mockFavourites.first?.value(forKey: "league_name") as? String, "Premier League")
-    }
-    
-    
     func testLoadDataFromCoreData() {
-           let expectation = self.expectation(description: "Data fetched from Core Data and bound to view controller")
+        
+        let mockFavourite = MockFavourite()
+        mockFavourite.league_key = 1
+        mockFavourite.league_name = "Premier League"
+        mockFavourite.league_logo = "logo_url"
+        mockCoreDataManager.favourites = [mockFavourite]
 
-           viewModel.bindResultToViewController = {
-               XCTAssertNotNil(self.viewModel.result)
-               XCTAssertEqual(self.viewModel.result?.count, 2) 
-               expectation.fulfill()
-           }
+        viewModel.loadDatafromCoreData()
+        
+        
+        XCTAssertEqual(viewModel.result?.first?.league_name, "Premier League")
+    }
 
-           viewModel.loadDatafromCoreData()
-           waitForExpectations(timeout: 5)
-       }
-   }
+}

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Leagues: Codable {
+struct Leagues: Codable {
     
     var success: Int?
     var result: [League]?

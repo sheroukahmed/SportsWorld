@@ -7,7 +7,7 @@
 
 import Foundation
 
-class League: Codable {
+struct League: Codable {
     
     var league_key: Int?
     var league_name: String?

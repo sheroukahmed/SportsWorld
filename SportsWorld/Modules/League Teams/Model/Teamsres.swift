@@ -6,7 +6,8 @@
 //
 
 import Foundation
-class Teamsres: Codable {
+
+struct Teamsres: Codable {
     
     var result: [Teams]?
 }

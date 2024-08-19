@@ -24,9 +24,9 @@ class FavouritesViewModel {
     
     func loadDatafromCoreData() {
         let storedFavourites = coreDataManager.getFavourites()
-        
+        self.result = []
         for fav in storedFavourites {
-            let league = League()
+            var league = League()
             self.sport = fav.value(forKey: "sport") as? String
             league.league_name = fav.value(forKey: "league_name") as? String
             league.league_logo = fav.value(forKey: "league_logo") as? String
@@ -34,6 +34,7 @@ class FavouritesViewModel {
             self.result?.append(league)
         }
     }
+    
     
     
    
