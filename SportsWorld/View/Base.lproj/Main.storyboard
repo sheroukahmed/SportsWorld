@@ -424,40 +424,40 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamCell" id="1fC-tN-ctY" customClass="TeamsCollectionViewCell" customModule="SportsWorld" customModuleProvider="target">
-                                        <rect key="frame" x="121.66666666666667" y="352" width="150" height="150"/>
+                                        <rect key="frame" x="96.666666666666671" y="352" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nEl-yZ-wYD">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Madrid" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okq-lo-Sd5">
-                                                    <rect key="frame" x="34.333333333333336" y="115" width="81.666666666666657" height="20"/>
+                                                    <rect key="frame" x="57.666666666666664" y="142" width="84.666666666666686" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="cfU-gZ-L6P"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Real_Madrid_CF" translatesAutoresizingMaskIntoConstraints="NO" id="tdX-ef-hme">
-                                                    <rect key="frame" x="38" y="30" width="74" height="74"/>
+                                                    <rect key="frame" x="55" y="40" width="90" height="90"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="74" id="48x-Ir-9cw"/>
-                                                        <constraint firstAttribute="height" constant="74" id="L3s-Go-b36"/>
+                                                        <constraint firstAttribute="width" constant="90" id="48x-Ir-9cw"/>
+                                                        <constraint firstAttribute="height" constant="90" id="L3s-Go-b36"/>
                                                         <constraint firstAttribute="width" secondItem="tdX-ef-hme" secondAttribute="height" multiplier="1:1" id="wtG-oQ-lUb"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.93927664710000003" green="0.93927664710000003" blue="0.93927664710000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Okq-lo-Sd5" secondAttribute="bottom" constant="15" id="5NZ-fV-WWG"/>
+                                                <constraint firstAttribute="bottom" secondItem="Okq-lo-Sd5" secondAttribute="bottom" constant="38" id="5NZ-fV-WWG"/>
                                                 <constraint firstItem="tdX-ef-hme" firstAttribute="centerX" secondItem="nEl-yZ-wYD" secondAttribute="centerX" id="gCE-q6-P5p"/>
                                                 <constraint firstItem="Okq-lo-Sd5" firstAttribute="centerX" secondItem="nEl-yZ-wYD" secondAttribute="centerX" id="sHn-ak-PyH"/>
-                                                <constraint firstItem="tdX-ef-hme" firstAttribute="top" secondItem="nEl-yZ-wYD" secondAttribute="top" constant="30" id="shQ-YS-w3j"/>
+                                                <constraint firstItem="tdX-ef-hme" firstAttribute="top" secondItem="nEl-yZ-wYD" secondAttribute="top" constant="40" id="shQ-YS-w3j"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" red="0.76502243199999997" green="0.76502243199999997" blue="0.76502243199999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <size key="customSize" width="150" height="150"/>
+                                        <size key="customSize" width="200" height="200"/>
                                         <connections>
                                             <outlet property="teamlogo" destination="tdX-ef-hme" id="DMN-jQ-MYY"/>
                                             <outlet property="teamnamelabel" destination="Okq-lo-Sd5" id="pra-45-1sJ"/>

@@ -141,11 +141,12 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         case 2 :
             
             teamCell.teamlogo.kf.setImage(with: URL(string: detailsVM?.leagueTeams[indexPath.row].home_team_logo ?? dummyTeamLogo))
-            (teamCell.viewWithTag(1) as! UIImageView).layer.cornerRadius = 37
+            (teamCell.viewWithTag(1) as! UIImageView).layer.cornerRadius = 45
             (teamCell.viewWithTag(1) as! UIImageView).backgroundColor = .white
 
             teamCell.teamnamelabel.text = detailsVM?.leagueTeams[indexPath.row].event_home_team ?? "Team Name"
-            teamCell.layer.cornerRadius = 70
+            teamCell.layer.cornerRadius = 95
+
 
             return teamCell
             
@@ -216,7 +217,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(150), heightDimension: .absolute(150))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(200), heightDimension: .absolute(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16)
         let section = NSCollectionLayoutSection(group: group)
