@@ -7,7 +7,25 @@
 		<key>SportsWorld.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F84828EF2C6AACE400AA8CFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F84829082C6AACE700AA8CFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F84829122C6AACE700AA8CFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

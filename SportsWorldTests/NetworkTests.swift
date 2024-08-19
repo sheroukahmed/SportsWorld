@@ -28,12 +28,17 @@ final class NetworkTests: XCTestCase {
         
         let url = "https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=f9711946902cdb48dff17c3fbad39cf22645dcf8d8fc79e58b23a508660c3a8c"
         
-        network.fetch(url: url, type: League.self) { result in
+        network.fetch(url: url, type: Leagues.self) { result in
             
             XCTAssertNotNil(result, "Expected non-nil result")
             print("Result: \(String(describing: result))")
-            XCTAssertEqual(result?.league_key, 4)
-            XCTAssertEqual(result?.league_name, "UEFA Europa League")
+            if let league = result?.result?.first {
+                XCTAssertEqual(league.league_key, 4)
+                XCTAssertEqual(league.league_name, "UEFA Europa League")
+            } else {
+                XCTFail("Expected a valid league in the result")
+            }
+            
                 myExpectatin.fulfill()
             }
         
@@ -52,7 +57,7 @@ final class NetworkTests: XCTestCase {
             myExpectatin.fulfill()
             }
         
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 7)
     }
     
     func testFetchMockData() {

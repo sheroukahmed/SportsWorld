@@ -18,6 +18,8 @@ class URLManger {
     static let to = "&to="
     static let key = "&APIkey="
     
+    
+    
     class func getDateOf(targetDate: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
