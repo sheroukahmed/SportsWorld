@@ -337,8 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				26BE0C732C729A1800C332C6 /* Moking */,
-				F848290D2C6AACE700AA8CFB /* SportsWorldTests.swift */,
 				26BE0C6F2C7296B300C332C6 /* NetworkTests.swift */,
+				F848290D2C6AACE700AA8CFB /* SportsWorldTests.swift */,
 			);
 			path = SportsWorldTests;
 			sourceTree = "<group>";
