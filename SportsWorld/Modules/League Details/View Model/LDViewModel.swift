@@ -14,7 +14,7 @@ class LeagueDetailsViewModel {
     var sport: String?
     var league: League?
     var leagueKey: Int?
-    var coreDataManager: CoreDataManager
+    var coreDataManager: CoreDataManagerProtocol
 
     var leagueTeams: [hometeam] = []
 
@@ -59,7 +59,8 @@ class LeagueDetailsViewModel {
         })
 
     }
-
+    
+    
     private func checkIfDataIsFetched() {
         if upEvents != nil && lateEvents != nil {
             bindResultToViewController()

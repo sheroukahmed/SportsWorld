@@ -8,33 +8,35 @@
 import XCTest
 @testable import SportsWorld
 
-final class TeamViewModelTests: XCTestCase {
-
+class TeamsViewModelTests: XCTestCase {
     var viewModel: TeamsViewModel!
-    var mockNetwork: MockNetwork!
-    
-    override func setUpWithError() throws {
-        mockNetwork = MockNetwork(shouldReturnError: false)
+    var MockNetworkGeneric: MockNetworkGeneric!
+
+    override func setUp() {
+        super.setUp()
+        MockNetworkGeneric = SportsWorldTests.MockNetworkGeneric()
         viewModel = TeamsViewModel()
-        viewModel.network = mockNetwork as? any Networkprotocol
+        viewModel.network = MockNetworkGeneric
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         viewModel = nil
-        mockNetwork = nil
+        MockNetworkGeneric = nil
+        super.tearDown()
     }
 
-    
     func testLoadDataSuccess() {
-            let expectation = self.expectation(description: "Team data fetched and bound to view controller")
+        let expectedTeam = Teamsres(result: [Teams(team_name: "Team A", team_logo: "logo_url", team_key: 22, players: [])])
+        MockNetworkGeneric.resultToReturn = expectedTeam
 
-            viewModel.bindResultToViewController = {
-                XCTAssertNotNil(self.viewModel.result)
-                XCTAssertEqual(self.viewModel.result?.team_name, "Mock Team") 
-                expectation.fulfill()
-            }
-
-            viewModel.loadData()
-            waitForExpectations(timeout: 5)
+        let expectation = self.expectation(description: "Data Binding")
+        viewModel.bindResultToViewController = {
+            expectation.fulfill()
         }
+
+        viewModel.loadData()
+        waitForExpectations(timeout: 2)
+
+        XCTAssertEqual(viewModel.result?.team_name, "Team A")
     }
+}

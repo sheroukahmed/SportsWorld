@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Match: Codable{
+struct Match: Codable{
     
     var event_home_team: String?
     var home_team_key: Int?

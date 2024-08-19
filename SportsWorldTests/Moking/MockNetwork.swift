@@ -16,13 +16,25 @@ class MockNetwork {
         self.shouldReturnError = shouldReturnError
     }
     
-    let fakeJSON: [String : Any] =
-    [ "result" : [
-        "league_key": 4,
-        "league_name": "UEFA Europa League",
-        "league_logo": "https://apiv2.allsportsapi.com/logo/logo_leagues/"
-    ]
-    ]
+    let fakeJSON: [String: Any] = [
+            "result": [
+                [
+                    "league_key": 4,
+                    "league_name": "UEFA Europa League",
+                    "league_logo": "https://apiv2.allsportsapi.com/logo/logo_leagues/"
+                ],
+                [
+                    "league_key": 5,
+                    "league_name": "UEFA Champions League",
+                    "league_logo": "https://apiv2.allsportsapi.com/logo/logo_leagues/"
+                ],
+                [
+                    "league_key": 6,
+                    "league_name": "English Premier League",
+                    "league_logo": "https://apiv2.allsportsapi.com/logo/logo_leagues/"
+                ]
+            ]
+        ]
     
 }
 

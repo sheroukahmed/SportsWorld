@@ -31,39 +31,10 @@ class LeaguesViewModel {
                 self.result = leagues.result
             } else {
                 print("Failed to fetch or decode leagues")
+                self.result = nil  
             }
         })
     }
     
-
-
-    
-//    func loadDatafromCoreData() {
-//        let storedFavourites = coreDataManager.getFavourites()
-//
-//        for fav in storedFavourites {
-//            let league = League()
-//            league.league_name = fav.value(forKey: "league_name") as? String
-//            league.league_logo = fav.value(forKey: "league_logo") as? String
-//            league.league_key = fav.value(forKey: "league_key") as? Int
-//            self.favResult.append(league)
-//        }
-//    }
-    
-    
-//    func removeFavourite(leagueKey: Int) {
-//        coreDataManager.removeFromFavourites(leagueKey: leagueKey)
-//
-//    }
-    
-//    func loadData(isChecked: Bool) {
-//        if isChecked {
-//            loadDataFromApi()
-//            bindResultToViewController()
-//        } else {
-//            loadDatafromCoreData()
-//        }
-        
-  //  }
     
 }

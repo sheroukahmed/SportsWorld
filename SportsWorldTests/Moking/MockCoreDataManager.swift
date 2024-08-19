@@ -9,29 +9,35 @@ import XCTest
 import CoreData
 @testable import SportsWorld
 
+class MockFavourite: NSManagedObject {
+    @objc var league_key: NSNumber?
+    @objc var league_name: NSString?
+    @objc var league_logo: NSString?
+    @objc var sport: NSString?
+}
 
-final class MockCoreDataManager: CoreDataManagerProtocol {
-    
-    var mockFavourites: [NSManagedObject] = []
-    var isFavouritedResult: Bool = false
-    
+class MockCoreDataManager: CoreDataManagerProtocol {
+    var favourites: [MockFavourite] = []
+    var shouldReturnError = false
+
     func getFavourites() -> [NSManagedObject] {
-        return mockFavourites
+        return favourites
     }
-    
+
     func addToFavourites(favLeague: League, sport: String) {
-        let league = NSManagedObject()
-        league.setValue(favLeague.league_key, forKey: "league_key")
-        league.setValue(favLeague.league_name, forKey: "league_name")
-        league.setValue(favLeague.league_logo, forKey: "league_logo")
-        mockFavourites.append(league)
+        let favourite = MockFavourite()
+                favourite.league_key = favLeague.league_key as NSNumber?
+                favourite.league_name = favLeague.league_name as NSString?
+                favourite.league_logo = favLeague.league_logo as NSString?
+                favourite.sport = sport as NSString?
+                favourites.append(favourite)
     }
-    
+
     func removeFromFavourites(leagueKey: Int) {
-        mockFavourites.removeAll { $0.value(forKey: "league_key") as? Int == leagueKey }
+        favourites.removeAll { $0.league_key == leagueKey as NSNumber }
     }
-    
+
     func isFavourited(leagueKey: Int) -> Bool {
-        return isFavouritedResult
+        return favourites.contains { $0.league_key == leagueKey as NSNumber }
     }
 }

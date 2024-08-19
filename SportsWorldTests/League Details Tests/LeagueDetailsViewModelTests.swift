@@ -8,35 +8,60 @@
 import XCTest
 @testable import SportsWorld
 
-final class LeaguesDetailsViewModelTests: XCTestCase {
-    
+class LeagueDetailsViewModelTests: XCTestCase {
     var viewModel: LeagueDetailsViewModel!
-    var mockNetwork: MockNetwork!
-    
-    
-    override func setUpWithError() throws {
-        mockNetwork = MockNetwork(shouldReturnError: false)
-        viewModel = LeagueDetailsViewModel(sport: "football", leagueKey: 4, league: League())
-        viewModel.network = mockNetwork as? any Networkprotocol
+    var MockNetworkGeneric: MockNetworkGeneric!
+    var mockCoreDataManager: MockCoreDataManager!
+
+    override func setUp() {
+        super.setUp()
+        MockNetworkGeneric = SportsWorldTests.MockNetworkGeneric()
+        mockCoreDataManager = MockCoreDataManager()
+        viewModel = LeagueDetailsViewModel(sport: "football", leagueKey: 1, league: League())
+        viewModel.network = MockNetworkGeneric
+        viewModel.coreDataManager = mockCoreDataManager
     }
-    
-    
-    override func tearDownWithError() throws {
+
+    override func tearDown() {
         viewModel = nil
-        mockNetwork = nil
+        MockNetworkGeneric = nil
+        mockCoreDataManager = nil
+        super.tearDown()
     }
 
-    
     func testLoadDataSuccess() {
-          let expectation = self.expectation(description: "Upcoming and Latest events fetched and bound to view controller")
+        let expectedEvents = Events(result: [Match(event_home_team: "Team A", home_team_logo: "logo_url", event_date: "2024-08-20")])
+        MockNetworkGeneric.resultToReturn = expectedEvents
 
-          viewModel.bindResultToViewController = {
-              XCTAssertNotNil(self.viewModel.upEvents)
-              XCTAssertNotNil(self.viewModel.lateEvents)
-              expectation.fulfill()
-          }
+        let expectation = self.expectation(description: "Data Binding")
+        viewModel.bindResultToViewController = {
+            expectation.fulfill()
+        }
 
-          viewModel.loadData()
-          waitForExpectations(timeout: 5)
-      }
-  }
+        viewModel.loadData()
+        waitForExpectations(timeout: 2)
+
+        XCTAssertEqual(viewModel.upEvents?.first?.event_home_team, "Team A")
+    }
+    
+    func testLoadDataWithEmptyResponse() {
+        let expectedEvents = Events(result: [])  // Empty events list
+        MockNetworkGeneric.resultToReturn = expectedEvents
+
+        let expectation = self.expectation(description: "Data Binding")
+        viewModel.bindResultToViewController = {
+            expectation.fulfill()
+        }
+
+        viewModel.loadData()
+        waitForExpectations(timeout: 2)
+
+        XCTAssertTrue(viewModel.upEvents?.isEmpty ?? false)
+        XCTAssertTrue(viewModel.lateEvents?.isEmpty ?? false)
+    }
+    
+    
+
+
+}
+
