@@ -19,6 +19,7 @@ final class NetworkTests: XCTestCase {
     
     override func tearDownWithError() throws {
         network = nil
+        mockObj = nil
     }
     
     func testfetchDataSuccess() {
@@ -30,6 +31,7 @@ final class NetworkTests: XCTestCase {
         network.fetch(url: url, type: League.self) { result in
             
             XCTAssertNotNil(result, "Expected non-nil result")
+            print("Result: \(String(describing: result))")
             XCTAssertEqual(result?.league_key, 4)
             XCTAssertEqual(result?.league_name, "UEFA Europa League")
                 myExpectatin.fulfill()

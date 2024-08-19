@@ -10,7 +10,7 @@ import CoreData
 
 class FavouritesViewModel {
     var sport :String?
-    var coreDataManager: CoreDataManager
+    var coreDataManager: CoreDataManagerProtocol
     var bindResultToViewController : (()->()) = {}
     var result : [League]?  {
         didSet{

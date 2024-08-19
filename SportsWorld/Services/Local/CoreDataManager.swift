@@ -8,8 +8,15 @@
 import UIKit
 import CoreData
 
+protocol CoreDataManagerProtocol {
+    func getFavourites() -> [NSManagedObject]
+    func addToFavourites(favLeague: League, sport: String)
+    func removeFromFavourites(leagueKey: Int)
+    func isFavourited(leagueKey: Int) -> Bool
+}
 
-class CoreDataManager {
+
+class CoreDataManager: CoreDataManagerProtocol {
     
     var context : NSManagedObjectContext!
     var storedFavourites: [NSManagedObject]?
