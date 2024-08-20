@@ -352,9 +352,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 3 : 2 " textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3I-pR-wWf">
-                                                    <rect key="frame" x="155" y="39" width="83" height="30"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" 3 : 2 " textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3I-pR-wWf">
+                                                    <rect key="frame" x="143" y="39" width="107" height="30"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -385,7 +385,7 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.95442253652245101" green="0.95442253652245101" blue="0.95442253652245101" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstItem="L3I-pR-wWf" firstAttribute="leading" secondItem="Sz1-8s-xbJ" secondAttribute="trailing" constant="15" id="1Gp-UH-aQN"/>
+                                                <constraint firstItem="L3I-pR-wWf" firstAttribute="leading" secondItem="Sz1-8s-xbJ" secondAttribute="trailing" constant="3" id="1Gp-UH-aQN"/>
                                                 <constraint firstItem="wbx-Tr-JRn" firstAttribute="leading" secondItem="1Z7-UL-L7J" secondAttribute="trailing" constant="5" id="1tK-EQ-rIA"/>
                                                 <constraint firstAttribute="bottom" secondItem="Sz1-8s-xbJ" secondAttribute="bottom" constant="35" id="5Ge-JY-Hk4"/>
                                                 <constraint firstItem="wbx-Tr-JRn" firstAttribute="top" secondItem="7Ua-is-u91" secondAttribute="top" constant="10" id="720-Fn-ubd"/>
@@ -401,7 +401,7 @@
                                                 <constraint firstItem="Sz1-8s-xbJ" firstAttribute="top" secondItem="7Ua-is-u91" secondAttribute="top" constant="10" id="dIv-VC-j94"/>
                                                 <constraint firstItem="L3I-pR-wWf" firstAttribute="top" secondItem="1L8-VF-Tje" secondAttribute="bottom" constant="9" id="ehg-tA-pLe"/>
                                                 <constraint firstAttribute="trailing" secondItem="wbx-Tr-JRn" secondAttribute="trailing" constant="16" id="epa-tB-CYW"/>
-                                                <constraint firstItem="wbx-Tr-JRn" firstAttribute="leading" secondItem="L3I-pR-wWf" secondAttribute="trailing" constant="15" id="fOS-UX-Mid"/>
+                                                <constraint firstItem="wbx-Tr-JRn" firstAttribute="leading" secondItem="L3I-pR-wWf" secondAttribute="trailing" constant="3" id="fOS-UX-Mid"/>
                                                 <constraint firstItem="1L8-VF-Tje" firstAttribute="top" secondItem="7Ua-is-u91" secondAttribute="top" constant="12" id="fnR-d4-EVe"/>
                                                 <constraint firstItem="1L8-VF-Tje" firstAttribute="leading" secondItem="Sz1-8s-xbJ" secondAttribute="trailing" constant="8" symbolic="YES" id="l3a-ic-ibJ"/>
                                                 <constraint firstItem="wbx-Tr-JRn" firstAttribute="leading" secondItem="2GP-s1-2mL" secondAttribute="trailing" constant="35" id="n9Q-dx-ax8"/>
