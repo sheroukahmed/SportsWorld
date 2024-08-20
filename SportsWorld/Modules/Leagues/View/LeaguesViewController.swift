@@ -11,7 +11,7 @@ import Alamofire
 import CoreData
 
 
-class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
+class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var noFavouriteImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -24,9 +24,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     var indicator: UIActivityIndicatorView?
     
     var dummyLeagueLogo = "https://static.vecteezy.com/system/resources/previews/029/885/532/non_2x/trophy-icon-illustration-champion-cup-logo-vector.jpg"
-    
-    var currentIndexPath: IndexPath?
-    let pressedDownTransform =  CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +32,6 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didTapLongPress))
-        longPressRecognizer.minimumPressDuration = 0.05
-        longPressRecognizer.cancelsTouchesInView = false
-        longPressRecognizer.delegate = self
-        tableView.addGestureRecognizer(longPressRecognizer)
         
         if listAllLeagues {
             
@@ -153,26 +146,26 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
             present(alert, animated: true)
         }
     }
-        
-        
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if !listAllLeagues {
-                if editingStyle == .delete {
-                    let alert = UIAlertController(title: "Are you sure?", message: "Do you really want to un-favourite this league?", preferredStyle: .alert)
-                    let yes = UIAlertAction(title: "Yes", style: .destructive) { UIAlertAction in
-                        self.favoritesViewModel.removeFavourite(leagueKey: self.favoritesViewModel.result?[indexPath.row].league_key ?? 0)
-                        self.favoritesViewModel.result?.remove(at: indexPath.row)
-                        self.viewWillAppear(true)
-                    }
-                    let no = UIAlertAction(title: "No", style: .cancel)
-                    
-                    alert.addAction(yes)
-                    alert.addAction(no)
-                    present(alert, animated: true)
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if !listAllLeagues {
+            if editingStyle == .delete {
+                let alert = UIAlertController(title: "Are you sure?", message: "Do you really want to un-favourite this league?", preferredStyle: .alert)
+                let yes = UIAlertAction(title: "Yes", style: .destructive) { UIAlertAction in
+                    self.favoritesViewModel.removeFavourite(leagueKey: self.favoritesViewModel.result?[indexPath.row].league_key ?? 0)
+                    self.favoritesViewModel.result?.remove(at: indexPath.row)
+                    self.viewWillAppear(true)
                 }
+                let no = UIAlertAction(title: "No", style: .cancel)
+                
+                alert.addAction(yes)
+                alert.addAction(no)
+                present(alert, animated: true)
             }
         }
-        
+    }
+    
     @IBAction func youtubeButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Alert!", message: "No Video Available", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .cancel)
@@ -180,49 +173,4 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
         present(alert, animated: true)
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-    
-    @objc func didTapLongPress(sender: UILongPressGestureRecognizer) {
-            let point = sender.location(in: tableView)
-            let indexPath = tableView.indexPathForRow(at: point)
-            
-            if sender.state == .began, let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
-                // Initial press down, animate inward, keep track of the currently pressed index path
-                
-                animate(cell, to: pressedDownTransform)
-                self.currentIndexPath = indexPath
-            } else if sender.state == .changed {
-                // Touch moved
-                // If the touch moved outside the current cell, then animate the current cell back up
-                // Otherwise, animate down again
-                
-                if indexPath != self.currentIndexPath, let currentIndexPath = self.currentIndexPath, let cell = tableView.cellForRow(at: currentIndexPath) {
-                    if cell.transform != .identity {
-                        animate(cell, to: .identity)
-                    }
-                } else if indexPath == self.currentIndexPath, let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
-                    if cell.transform != pressedDownTransform {
-                        animate(cell, to: pressedDownTransform)
-                    }
-                }
-            } else if let currentIndexPath = currentIndexPath, let cell = tableView.cellForRow(at: currentIndexPath) {
-                // Touch ended/cancelled, revert the cell to identity
-                
-                animate(cell, to: .identity)
-                self.currentIndexPath = nil
-            }
-        }
-        
-        private func animate(_ cell: UITableViewCell, to transform: CGAffineTransform) {
-            UIView.animate(withDuration: 0.4,
-                           delay: 0,
-                           usingSpringWithDamping: 0.4,
-                           initialSpringVelocity: 3,
-                           options: [.curveEaseInOut],
-                           animations: {
-                cell.transform = transform
-            }, completion: nil)
-        }
-    }
+}

@@ -167,8 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				26BE0C712C729A0900C332C6 /* MockNetwork.swift */,
-				26BE0C802C738D1D00C332C6 /* MockCoreDataManager.swift */,
 				F8D561982C73E73200139C8C /* MokingNetworkGeneric.swift */,
+				26BE0C802C738D1D00C332C6 /* MockCoreDataManager.swift */,
 			);
 			path = Moking;
 			sourceTree = "<group>";
@@ -970,6 +970,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NTDD4CBYR4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SportsWorld/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -998,6 +999,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NTDD4CBYR4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SportsWorld/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -22,7 +22,7 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
         
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didTapLongPress))
-        longPressRecognizer.minimumPressDuration = 0.05
+        longPressRecognizer.minimumPressDuration = 0.0000001
         longPressRecognizer.cancelsTouchesInView = false
         longPressRecognizer.delegate = self
         collectionView.addGestureRecognizer(longPressRecognizer)
@@ -92,47 +92,10 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
             cell.alpha = 1.0
         }, completion: nil)
         
-        /*
-         cell.alpha = 0
-         UIView.animate(withDuration: 0.9, animations: {
-         cell.alpha = 1
-         })
-        */
-        
-        /*
-         cell.transform = CGAffineTransform(translationX: 0, y: collectionView.bounds.size.height)
-         
-         UIView.animate(withDuration: 1, delay: 0.05 * Double(indexPath.row), usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-         // Reset the cell's position to its final location
-         cell.transform = CGAffineTransform.identity
-         }, completion: nil)
-        */
-        
-        
-        /*
-         cell.layer.transform = CATransform3DMakeRotation(.pi / 2, 2, 2, 2)
-         
-         UIView.animate(withDuration: 1.0, delay: 0.05 * Double(indexPath.row), options: .curveEaseInOut, animations: {
-         // Reset the cell's transform to its normal position
-         cell.layer.transform = CATransform3DIdentity
-         }, completion: nil)
-         
-         */
-        
-        /*
-        let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.translation.y")
-                bounceAnimation.values = [0, -10, 0, 10, 0]
-                bounceAnimation.duration = 0.6
-                bounceAnimation.repeatCount = .infinity
-                bounceAnimation.autoreverses = true
-                bounceAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-                
-                // Add the animation to the cell's layer
-                cell.layer.add(bounceAnimation, forKey: "bounce")
-    */
     }
     
-    
+    // Animation
+
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
@@ -142,15 +105,9 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
         let indexPath = collectionView.indexPathForItem(at: point)
         
         if sender.state == .began, let indexPath = indexPath, let cell = collectionView.cellForItem(at: indexPath) {
-            // Initial press down, animate inward, keep track of the currently pressed index path
-            
             animate(cell, to: pressedDownTransform)
             self.currentIndexPath = indexPath
         } else if sender.state == .changed {
-            // Touch moved
-            // If the touch moved outwidth the current cell, then animate the current cell back up
-            // Otherwise, animate down again
-            
             if indexPath != self.currentIndexPath, let currentIndexPath = self.currentIndexPath, let cell = collectionView.cellForItem(at: currentIndexPath) {
                 if cell.transform != .identity {
                     animate(cell, to: .identity)
@@ -161,7 +118,6 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
                 }
             }
         } else if let currentIndexPath = currentIndexPath, let cell = collectionView.cellForItem(at: currentIndexPath) {
-            // Touch ended/cancelled, revert the cell to identity
             
             animate(cell, to: .identity)
             self.currentIndexPath = nil

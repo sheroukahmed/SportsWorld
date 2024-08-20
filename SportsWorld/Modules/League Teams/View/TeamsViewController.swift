@@ -65,15 +65,29 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     return UITableViewCell()
                 }
         
-        cell.playerimage.kf.setImage(with: URL(string: TeamsVM?.result?.players[indexPath.row].player_image ?? "https://b.fssta.com/uploads/application/soccer/headshots/40670.vresize.350.350.medium.91.png"))
+        cell.playerimage.kf.setImage(with: URL(string: TeamsVM?.result?.players[indexPath.row].player_image ?? "https://t3.ftcdn.net/jpg/02/51/55/46/360_F_251554631_FLQCoeVFXWjSr32bCSC3cK75JSy3CiSI.jpg"))
         
         cell.playernolabel.text = TeamsVM?.result?.players[indexPath.row].player_number ?? "00" + ". "
         cell.playernamelabel.text = TeamsVM?.result?.players[indexPath.row].player_name ?? "Mbappe"
         cell.playerpositionlabel.text = TeamsVM?.result?.players[indexPath.row].player_type ?? "Mbappe"
         
         
+        
+        // Initial state before animation
+        cell.alpha = 0
+        cell.transform = CGAffineTransform(translationX: 0, y: 50)
+        
+        // Animation block
+        UIView.animate(withDuration: 0.7, delay: 0.001 * Double(indexPath.row), options: .curveEaseInOut, animations: {
+            cell.alpha = 1
+            cell.transform = .identity
+        }, completion: nil)
+        
+        
         return cell
     }
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
     }

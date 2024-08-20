@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import Alamofire
 
-class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
    
     
@@ -28,6 +28,9 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     
     var indicator: UIActivityIndicatorView?
     
+    var currentIndexPath: IndexPath?
+    let pressedDownTransform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +48,12 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         indicator?.center = self.view.center
         indicator?.startAnimating()
         self.view.addSubview(indicator!)
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didTapLongPress))
+        longPressRecognizer.minimumPressDuration = 0.0000001
+        longPressRecognizer.cancelsTouchesInView = false
+        longPressRecognizer.delegate = self
+        collection.addGestureRecognizer(longPressRecognizer)
         
         
         let layout = UICollectionViewCompositionalLayout {sectionIndex,enviroment in
@@ -118,6 +127,8 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             
             upcomingCell.awayteamlabel.text = detailsVM?.upEvents?[indexPath.row].event_away_team
             
+            
+            
             return upcomingCell
             
         case 1 :
@@ -130,6 +141,18 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             latestCell.scorelabel.text = detailsVM?.lateEvents?[indexPath.row].event_final_result
             latestCell.hometeamlabel.text = detailsVM?.lateEvents?[indexPath.row].event_home_team
             latestCell.awayteamlabel.text = detailsVM?.lateEvents?[indexPath.row].event_away_team
+            
+            latestCell.layer.cornerRadius = 30
+            
+            // Initial state before animation
+            latestCell.alpha = 0
+            latestCell.transform = CGAffineTransform(translationX: 0, y: 50)
+            
+            // Animation block
+            UIView.animate(withDuration: 0.7, delay: 0.001 * Double(indexPath.row), options: .curveEaseInOut, animations: {
+                latestCell.alpha = 1
+                latestCell.transform = .identity
+            }, completion: nil)
            
             return latestCell
         case 2 :
@@ -137,10 +160,20 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
             teamCell.teamlogo.kf.setImage(with: URL(string: detailsVM?.leagueTeams[indexPath.row].home_team_logo ?? dummyTeamLogo))
             (teamCell.viewWithTag(1) as! UIImageView).layer.cornerRadius = 45
             (teamCell.viewWithTag(1) as! UIImageView).backgroundColor = .white
+            (teamCell.viewWithTag(1) as! UIImageView).layer.zPosition = 1
 
             teamCell.teamnamelabel.text = detailsVM?.leagueTeams[indexPath.row].event_home_team ?? "Team Name"
-            teamCell.layer.cornerRadius = 95
+            teamCell.layer.cornerRadius = 40
 
+            // Initial state before animation
+            teamCell.alpha = 0
+            teamCell.transform = CGAffineTransform(translationX: 50, y: 0)
+            
+            // Animation block
+            UIView.animate(withDuration: 0.7, delay: 0.001 * Double(indexPath.row), options: .curveEaseInOut, animations: {
+                teamCell.alpha = 1
+                teamCell.transform = .identity
+            }, completion: nil)
 
             return teamCell
             
@@ -298,5 +331,60 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
     @IBAction func dismissButton(_ sender: Any) {
         dismiss(animated: true)
     }
+    
+    
+    // Animation
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    @objc func didTapLongPress(sender: UILongPressGestureRecognizer) {
+        let point = sender.location(in: collection)
+        let indexPath = collection.indexPathForItem(at: point)
+
+        let isLastSection = indexPath?.section == 2
+        
+        guard isLastSection, let indexPath = indexPath, let cell = collection.cellForItem(at: indexPath) else {
+            if let currentIndexPath = currentIndexPath, let currentCell = collection.cellForItem(at: currentIndexPath) {
+                animate(currentCell, to: .identity)
+            }
+            currentIndexPath = nil
+            return
+        }
+
+        if sender.state == .began {
+            animate(cell, to: pressedDownTransform)
+            currentIndexPath = indexPath
+        } else if sender.state == .changed {
+
+            if indexPath != currentIndexPath, let currentIndexPath = currentIndexPath, let cell = collection.cellForItem(at: currentIndexPath) {
+                if cell.transform != .identity {
+                    animate(cell, to: .identity)
+                }
+            } else if indexPath == currentIndexPath, let cell = collection.cellForItem(at: indexPath) {
+                if cell.transform != pressedDownTransform {
+                    animate(cell, to: pressedDownTransform)
+                }
+            }
+        } else if sender.state == .ended || sender.state == .cancelled {
+            if let currentIndexPath = currentIndexPath, let cell = collection.cellForItem(at: currentIndexPath) {
+                animate(cell, to: .identity)
+                self.currentIndexPath = nil
+            }
+        }
+    }
+    
+    private func animate(_ cell: UICollectionViewCell, to transform: CGAffineTransform) {
+           UIView.animate(withDuration: 0.4,
+                          delay: 0,
+                          usingSpringWithDamping: 0.4,
+                          initialSpringVelocity: 3,
+                          options: [.curveEaseInOut],
+                          animations: {
+               cell.transform = transform
+           }, completion: nil)
+       }
+    
     
 }
