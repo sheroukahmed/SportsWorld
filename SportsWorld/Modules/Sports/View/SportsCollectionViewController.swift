@@ -82,11 +82,11 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-        // Initial state before animation
+        
         cell.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
         cell.alpha = 0.2
         
-        // Animation block
+        
         UIView.animate(withDuration: 1.1, delay: 0.05 * Double(indexPath.row), options: .curveEaseInOut, animations: {
             cell.transform = CGAffineTransform.identity
             cell.alpha = 1.0

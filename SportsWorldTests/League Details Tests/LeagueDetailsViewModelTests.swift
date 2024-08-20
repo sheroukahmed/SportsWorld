@@ -45,7 +45,7 @@ class LeagueDetailsViewModelTests: XCTestCase {
     }
     
     func testLoadDataWithEmptyResponse() {
-        let expectedEvents = Events(result: [])  // Empty events list
+        let expectedEvents = Events(result: [])  
         MockNetworkGeneric.resultToReturn = expectedEvents
 
         let expectation = self.expectation(description: "Data Binding")
@@ -68,7 +68,7 @@ class LeagueDetailsViewModelTests: XCTestCase {
 
         viewModel.editInCoreData(league: league, leagueKey: 1, isFavourite: false, sport: "football")
 
-        XCTAssertTrue(mockCoreDataManager.isFavourited(leagueKey: 1))  // Check if the league was added
+        XCTAssertTrue(mockCoreDataManager.isFavourited(leagueKey: 1))
     }
 
     func testEditInCoreDataRemoveFavourite() {
@@ -77,11 +77,9 @@ class LeagueDetailsViewModelTests: XCTestCase {
         league.league_name = "Premier League"
         league.league_logo = "logo_url"
         
-        // First add the league
         mockCoreDataManager.addToFavourites(favLeague: league, sport: "football")
         XCTAssertTrue(mockCoreDataManager.isFavourited(leagueKey: 1))
         
-        // Now remove it
         viewModel.editInCoreData(league: league, leagueKey: 1, isFavourite: true, sport: "football")
         XCTAssertFalse(mockCoreDataManager.isFavourited(leagueKey: 1))  // Check if the league was removed
     }
@@ -110,16 +108,13 @@ class LeagueDetailsViewModelTests: XCTestCase {
         let latestEvents = Events(result: [Match(event_home_team: "Latest Team", home_team_logo: "logo_url_latest", event_date: "2024-08-22")])
         
         MockNetworkGeneric.resultToReturn = upcomingEvents
-        viewModel.loadData() // Load upcoming events first
+        viewModel.loadData()
 
-        // Check if the upcoming events are set
         XCTAssertEqual(viewModel.upEvents?.first?.event_home_team, "Upcoming Team")
         
-        // Simulate latest events response
         MockNetworkGeneric.resultToReturn = latestEvents
-        viewModel.loadData() // Load latest events
+        viewModel.loadData()
         
-        // Check if the latest events are set
         XCTAssertEqual(viewModel.lateEvents?.first?.event_home_team, "Latest Team")
     }
     
@@ -147,12 +142,10 @@ class LeagueDetailsViewModelTests: XCTestCase {
 
         viewModel.editInCoreData(league: league, leagueKey: 1, isFavourite: false, sport: "football")
         
-        // Verify CoreDataManager's addToFavourites method was called
         XCTAssertTrue(mockCoreDataManager.isFavourited(leagueKey: 1), "Expected CoreDataManager to have added the league to favourites.")
 
         viewModel.editInCoreData(league: league, leagueKey: 1, isFavourite: true, sport: "football")
         
-        // Verify CoreDataManager's removeFromFavourites method was called
         XCTAssertFalse(mockCoreDataManager.isFavourited(leagueKey: 1), "Expected CoreDataManager to have removed the league from favourites.")
     }
 

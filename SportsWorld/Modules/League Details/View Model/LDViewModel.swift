@@ -29,6 +29,7 @@ class LeagueDetailsViewModel {
             checkIfDataIsFetched()
         }
     }
+    
     init(sport:String? , leagueKey : Int?, league : League?) {
         self.sport = sport
         self.leagueKey = leagueKey

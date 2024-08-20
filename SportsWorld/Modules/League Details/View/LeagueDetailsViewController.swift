@@ -212,7 +212,6 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
                 let teamScreen = self.storyboard?.instantiateViewController(withIdentifier: "teamDetails") as! TeamsViewController
                 teamScreen.sport = detailsVM?.sport
                 teamScreen.teamKey = detailsVM?.leagueTeams[indexPath.row].home_team_key
-                //teamScreen.pageTitle = teams?[indexPath.row].team_title
                 present(teamScreen, animated: true)
             } else {
                 let alert = UIAlertController(title: "No Internet Connection!", message: "Please check your internet connection and try again.", preferredStyle: .alert)

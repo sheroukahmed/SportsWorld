@@ -107,11 +107,10 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
             (cell.viewWithTag(2) as! UILabel).text = favLeague?.league_name
         }
         
-        // Initial state before animation
+        
         cell.alpha = 0
         cell.transform = CGAffineTransform(translationX: 0, y: 50)
         
-        // Animation block
         UIView.animate(withDuration: 0.7, delay: 0.001 * Double(indexPath.row), options: .curveEaseInOut, animations: {
             cell.alpha = 1
             cell.transform = .identity
