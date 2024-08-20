@@ -36,12 +36,6 @@ class LeagueDetailsViewModel {
         self.network = Network()
         self.coreDataManager = CoreDataManager.shared
     }
-    init(leagueKey : Int?, league : League?) {
-        self.leagueKey = leagueKey
-        self.league = league
-        self.network = Network()
-        self.coreDataManager = CoreDataManager.shared
-    }
 
     func loadData() {
         let upcomingURL = URLManger.getFullURL(sport: sport ?? "", detail: "leagueEvents", leagueKey: leagueKey ?? 0, eventSelector: .upcoming) ?? ""
