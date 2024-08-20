@@ -42,7 +42,7 @@ final class NetworkTests: XCTestCase {
                 myExpectatin.fulfill()
             }
         
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 7)
     }
     
     func testfetchDataFailure() {

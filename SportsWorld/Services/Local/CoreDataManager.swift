@@ -28,6 +28,10 @@ class CoreDataManager: CoreDataManagerProtocol {
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
     
+    func setContext(_ context: NSManagedObjectContext) {
+            self.context = context
+        }
+    
     
     func getFavourites() -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeagues")
