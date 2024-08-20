@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+
 protocol CoreDataManagerProtocol {
     func getFavourites() -> [NSManagedObject]
     func addToFavourites(favLeague: League, sport: String)
@@ -24,13 +25,15 @@ class CoreDataManager: CoreDataManagerProtocol {
     
     static let shared = CoreDataManager()
     
+    
     private init() {
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     }
     
+    
     func setContext(_ context: NSManagedObjectContext) {
-            self.context = context
-        }
+        self.context = context
+    }
     
     
     func getFavourites() -> [NSManagedObject] {
@@ -40,13 +43,12 @@ class CoreDataManager: CoreDataManagerProtocol {
             if storedFavourites?.count == 0 {
                 print("Not data to present")
             }
-        } catch let error{
+        } catch let error {
             print("Can't Fetch")
             print(error.localizedDescription)
         }
         return storedFavourites ?? []
     }
-    
     
     
     func addToFavourites(favLeague: League, sport: String) {
@@ -68,6 +70,7 @@ class CoreDataManager: CoreDataManagerProtocol {
         }
     }
     
+    
     func removeFromFavourites(leagueKey: Int) {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeagues")
         let storedFavourites = try? self.context.fetch(fetchRequest)
@@ -80,25 +83,27 @@ class CoreDataManager: CoreDataManagerProtocol {
                 context.delete(league)
             }
         }
-            do {
-                try context.save()
-                print("Deleted!!")
-            } catch let error as NSError {
-                print("Can't Delete a League!")
-                print(error.localizedDescription)
-            }
+        do {
+            try context.save()
+            print("Deleted!!")
+        } catch let error as NSError {
+            print("Can't Delete a League!")
+            print(error.localizedDescription)
         }
+    }
     
-    func isFavourited(leagueKey: Int ) -> Bool{
+    
+    func isFavourited(leagueKey: Int ) -> Bool {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeagues")
         fetchRequest.predicate = NSPredicate(format: "league_key == %d", leagueKey)
         
         do {
             let favourites = try self.context.fetch(fetchRequest)
             return !favourites.isEmpty
-           } catch {
-               print("Failed to fetch favourites: \(error.localizedDescription)")
-               return false
-           }
-       }
+        } catch {
+            print("Failed to fetch favourites: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
 }

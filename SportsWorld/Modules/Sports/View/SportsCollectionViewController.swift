@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 
+
 private let reuseIdentifier = "Cell"
 
 class SportsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
@@ -16,6 +17,7 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
     
     var currentIndexPath: IndexPath?
     let pressedDownTransform =  CGAffineTransform.identity.scaledBy(x: 0.75, y: 0.75)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,35 +35,37 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
         return 1
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sports.count
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         
         (cell.viewWithTag(1) as! UIImageView).image = UIImage(named: sports[indexPath.row].capitalized)
-        
         (cell.viewWithTag(2) as! UILabel).text = sports[indexPath.row].capitalized
         
         cell.layer.cornerRadius = 50
         
-        
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width * 0.499, height: self.view.frame.width * 0.499)
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0.1
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if NetworkReachabilityManager()?.isReachable ?? false {
@@ -80,19 +84,18 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
         }
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         
         cell.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
         cell.alpha = 0.2
-        
         
         UIView.animate(withDuration: 1.1, delay: 0.05 * Double(indexPath.row), options: .curveEaseInOut, animations: {
             cell.transform = CGAffineTransform.identity
             cell.alpha = 1.0
         }, completion: nil)
-        
     }
+    
     
     // Animation
 

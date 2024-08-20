@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct hometeam :Codable{
     
     var event_home_team: String?

@@ -19,6 +19,7 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var sport: String!
     var TeamsVM : TeamsViewModel?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,20 +46,11 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return TeamsVM?.result?.players.count ?? 0
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = playerstable.dequeueReusableCell(withIdentifier: "playercell", for: indexPath) as? PlayersTableViewCell else {
@@ -72,7 +64,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.playerpositionlabel.text = TeamsVM?.result?.players[indexPath.row].player_type ?? "Mbappe"
         
         
-        
         // Initial state before animation
         cell.alpha = 0
         cell.transform = CGAffineTransform(translationX: 0, y: 50)
@@ -82,7 +73,6 @@ class TeamsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.alpha = 1
             cell.transform = .identity
         }, completion: nil)
-        
         
         return cell
     }

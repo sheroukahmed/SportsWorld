@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UAY-NK-Do9">
-                                <rect key="frame" x="16" y="87" width="361" height="671"/>
+                                <rect key="frame" x="16" y="89.666666666666686" width="361" height="668.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagueCell" rowHeight="80" id="umd-r7-SYP" customClass="LeaguesTableViewCell" customModule="SportsWorld" customModuleProvider="target">
@@ -54,7 +54,7 @@
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="204" id="1mV-9d-gpn"/>
                                                         <constraint firstAttribute="height" constant="25" id="QsA-zp-xVP"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="16"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -94,8 +94,8 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2id-ro-rKS">
-                                <rect key="frame" x="144" y="59.000000000000007" width="105" height="20.333333333333336"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <rect key="frame" x="144" y="59" width="105" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -264,19 +264,19 @@
                                                         <constraint firstAttribute="height" constant="16" id="9R0-vc-5It"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="83" id="HJR-gE-XIb"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wL-gu-raG">
                                                     <rect key="frame" x="20" y="174" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3o-Ua-0by">
                                                     <rect key="frame" x="331" y="174" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -348,13 +348,13 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="97" id="Xt0-if-9gR"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="Kefa-Regular" family="Kefa" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 3 : 2 " textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3I-pR-wWf">
                                                     <rect key="frame" x="155" y="39" width="83" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -366,19 +366,19 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GP-s1-2mL">
                                                     <rect key="frame" x="175" y="95" width="43" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23z-sC-A1P">
-                                                    <rect key="frame" x="60.333333333333329" y="99" width="35.333333333333329" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="60.333333333333329" y="97.666666666666671" width="35.333333333333329" height="18.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjo-U0-mjr">
-                                                    <rect key="frame" x="296.33333333333331" y="98" width="37.333333333333314" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <rect key="frame" x="297.33333333333331" y="97.666666666666671" width="35.333333333333314" height="18.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -439,11 +439,11 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Madrid" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Okq-lo-Sd5">
-                                                    <rect key="frame" x="53" y="135" width="94" height="18"/>
+                                                    <rect key="frame" x="50.666666666666664" y="133" width="98.666666666666686" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="rQ9-yA-6Sc"/>
+                                                        <constraint firstAttribute="height" constant="20" id="rQ9-yA-6Sc"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -458,7 +458,6 @@
                                                 <constraint firstItem="sfC-iC-UKn" firstAttribute="centerX" secondItem="tdX-ef-hme" secondAttribute="centerX" id="HtN-sW-WCP"/>
                                                 <constraint firstAttribute="bottom" secondItem="Okq-lo-Sd5" secondAttribute="bottom" constant="22" id="Oyg-rI-C3p"/>
                                                 <constraint firstItem="tdX-ef-hme" firstAttribute="top" secondItem="nEl-yZ-wYD" secondAttribute="top" constant="30" id="egd-8P-aVd"/>
-                                                <constraint firstItem="sfC-iC-UKn" firstAttribute="width" secondItem="tdX-ef-hme" secondAttribute="width" multiplier="1.91111" id="fcd-AK-zWV"/>
                                                 <constraint firstItem="sfC-iC-UKn" firstAttribute="centerY" secondItem="tdX-ef-hme" secondAttribute="centerY" id="gj6-Cj-HGW"/>
                                                 <constraint firstItem="sfC-iC-UKn" firstAttribute="width" secondItem="tdX-ef-hme" secondAttribute="height" multiplier="86:45" id="j1f-Oh-P3y"/>
                                                 <constraint firstItem="tdX-ef-hme" firstAttribute="centerX" secondItem="nEl-yZ-wYD" secondAttribute="centerX" id="p78-p7-OrK"/>
@@ -559,12 +558,12 @@
                                     <constraint firstAttribute="width" constant="141" id="rgS-2o-12F"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Madrid" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihm-7y-fbP">
-                                <rect key="frame" x="40" y="306" width="313" height="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihm-7y-fbP">
+                                <rect key="frame" x="40" y="301" width="313" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="VJ1-Zo-JJt"/>
+                                    <constraint firstAttribute="height" constant="30" id="VJ1-Zo-JJt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -591,7 +590,7 @@
                             <constraint firstItem="Ngp-TK-SnA" firstAttribute="leading" secondItem="jY0-F5-8w2" secondAttribute="leading" constant="16" id="8yX-9R-hkA"/>
                             <constraint firstItem="Ngp-TK-SnA" firstAttribute="top" secondItem="jY0-F5-8w2" secondAttribute="top" constant="22" id="A0D-o1-aKC"/>
                             <constraint firstItem="jY0-F5-8w2" firstAttribute="trailing" secondItem="Ngp-TK-SnA" secondAttribute="trailing" constant="16" id="QfD-uQ-h6j"/>
-                            <constraint firstItem="Ihm-7y-fbP" firstAttribute="top" secondItem="mII-e7-w87" secondAttribute="bottom" constant="17" id="Vf2-Bu-knT"/>
+                            <constraint firstItem="Ihm-7y-fbP" firstAttribute="top" secondItem="mII-e7-w87" secondAttribute="bottom" constant="12" id="Vf2-Bu-knT"/>
                             <constraint firstAttribute="bottom" secondItem="dAy-kD-le9" secondAttribute="bottom" id="Vp6-KT-AdF"/>
                             <constraint firstItem="Ihm-7y-fbP" firstAttribute="leading" secondItem="jY0-F5-8w2" secondAttribute="leading" constant="40" id="Wuh-Si-r6B"/>
                             <constraint firstItem="jY0-F5-8w2" firstAttribute="trailing" secondItem="dAy-kD-le9" secondAttribute="trailing" constant="16" id="buk-lB-TpF"/>

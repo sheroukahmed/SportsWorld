@@ -7,7 +7,9 @@
 
 import Foundation
 
+
 class TeamsViewModel {
+    
     var network: Networkprotocol?
     var bindResultToViewController : (()->()) = {}
     var sport: String?
@@ -22,6 +24,7 @@ class TeamsViewModel {
         self.network = Network()
     }
     
+    
     func loadData(){
         
         let url = URLManger.getFullURL(sport: sport ?? "", detail: "team", teamKey: teamKey ?? 0) ?? ""
@@ -29,8 +32,6 @@ class TeamsViewModel {
         network?.fetch(url: url, type: Teamsres.self, complitionHandler: { team in
             self.result = team?.result?[0]
         })
-        
     }
-    
     
 }

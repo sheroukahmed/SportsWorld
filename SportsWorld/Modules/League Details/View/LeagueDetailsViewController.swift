@@ -307,7 +307,7 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         if isFavourited {
             favItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
-        else{
+        else {
             favItem.setImage(UIImage(systemName: "heart"), for: .normal)
         }
     }
@@ -317,13 +317,21 @@ class LeagueDetailsViewController: UIViewController ,UICollectionViewDelegate, U
         let isFavourited = CoreDataManager.shared.isFavourited(leagueKey: detailsVM?.leagueKey ?? 0)
         
         if isFavourited {
-            favItem.setImage(UIImage(systemName: "heart"), for: .normal)
+            let alert = UIAlertController(title: "Are you sure?", message: "Do you really want to un-favourite this league?", preferredStyle: .alert)
+            let yes = UIAlertAction(title: "Yes", style: .destructive) { UIAlertAction in
+                self.favItem.setImage(UIImage(systemName: "heart"), for: .normal)
+                self.detailsVM?.editInCoreData(league: (self.detailsVM?.league)!, leagueKey: self.detailsVM?.leagueKey ?? 0, isFavourite: isFavourited, sport: (self.detailsVM?.sport) ?? "")
+            }
+            let no = UIAlertAction(title: "No", style: .cancel)
+            
+            alert.addAction(yes)
+            alert.addAction(no)
+            present(alert, animated: true)
         }
-        else{
+        else {
             favItem.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            self.detailsVM?.editInCoreData(league: (self.detailsVM?.league)!, leagueKey: self.detailsVM?.leagueKey ?? 0, isFavourite: isFavourited, sport: (self.detailsVM?.sport) ?? "")
         }
-        
-        detailsVM?.editInCoreData(league: (detailsVM?.league)!, leagueKey: detailsVM?.leagueKey ?? 0, isFavourite: isFavourited, sport: (detailsVM?.sport) ?? "")
         
     }
     

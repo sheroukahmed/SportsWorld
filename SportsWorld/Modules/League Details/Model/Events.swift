@@ -7,7 +7,9 @@
 
 import Foundation
 
+
 struct Events: Codable {
     
     var result: [Match]?
+    
 }

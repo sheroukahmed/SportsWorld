@@ -49,7 +49,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if !listAllLeagues{
+        if !listAllLeagues {
             favoritesViewModel.result = []
             self.favtitle.text = "Favorites"
             self.favoritesViewModel.loadDatafromCoreData()
@@ -75,6 +75,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 1
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if listAllLeagues {
             return leaguesViewModel?.result?.count ?? 0
@@ -82,6 +83,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
             return favoritesViewModel.result?.count ?? 0
         }
     }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
@@ -95,7 +97,6 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
         (cell.viewWithTag(1) as! UIImageView).backgroundColor = .white
         cell.layer.cornerRadius = 20
         
-        
         if listAllLeagues {
             if let league = leaguesViewModel?.result?[indexPath.row] {
                 (cell.viewWithTag(1) as! UIImageView).kf.setImage(with: URL(string: league.league_logo ?? dummyLeagueLogo))
@@ -106,7 +107,6 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
             (cell.viewWithTag(1) as! UIImageView).kf.setImage(with: URL(string: favLeague?.league_logo ?? dummyLeagueLogo ))
             (cell.viewWithTag(2) as! UILabel).text = favLeague?.league_name
         }
-        
         
         cell.alpha = 0
         cell.transform = CGAffineTransform(translationX: 0, y: 50)
@@ -123,7 +123,6 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if NetworkReachabilityManager()?.isReachable ?? false {
             let leagueDetails = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsViewController
-            
             
             if listAllLeagues {
                 
@@ -164,6 +163,7 @@ class LeaguesViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
+    
     
     @IBAction func youtubeButtonTapped(_ sender: Any) {
         let alert = UIAlertController(title: "Alert!", message: "No Video Available", preferredStyle: .alert)

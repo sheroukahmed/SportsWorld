@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class PlayersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var playerpositionlabel: UILabel!
@@ -15,9 +16,10 @@ class PlayersTableViewCell: UITableViewCell {
     @IBOutlet weak var playerimage: UIImageView!
     @IBOutlet weak var backimage: UIImageView!
     @IBOutlet weak var content: UIView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     

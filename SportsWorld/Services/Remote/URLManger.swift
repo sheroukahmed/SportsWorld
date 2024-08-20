@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 class URLManger {
     
     static let base = "https://apiv2.allsportsapi.com/"
@@ -37,9 +38,11 @@ class URLManger {
         }
     }
     
+    
     enum EventsSelector {
         case upcoming, latest
     }
+    
     
     class func getLeagueEventsURL(for sport: String, leagueKey: Int, eventSelector: EventsSelector) -> String? {
         let dateRange: String
@@ -52,9 +55,11 @@ class URLManger {
         return base + sport + leagueEvents + String(leagueKey) + dateRange + key + constantKey
     }
     
+    
     class func getTeamURL(for sport: String, teamKey: Int) -> String? {
         return base + sport + team + String(teamKey) + key + constantKey
     }
+    
     
     class func getAllLeaguesURL(for sport: String) -> String? {
         return base + sport + allLeagues + key + constantKey
@@ -75,4 +80,5 @@ class URLManger {
             return getAllLeaguesURL(for: sport)
         }
     }
+    
 }

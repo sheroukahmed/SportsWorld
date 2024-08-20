@@ -8,7 +8,8 @@
 import Foundation
 import Alamofire
 
-class Network : Networkprotocol{
+
+class Network : Networkprotocol {
     
     func fetch<T: Codable>(url: String, type: T.Type, complitionHandler: @escaping (T?)->Void) {
         let url = URL(string:url)
@@ -21,10 +22,10 @@ class Network : Networkprotocol{
                 complitionHandler(nil)
                 return  }
             print("fetching in background")
-            do{
+            do {
                 let result = try JSONDecoder().decode(T.self, from: data)
                 complitionHandler(result)
-            }catch let error{
+            } catch let error {
                 print(error.localizedDescription)
                 complitionHandler(nil)
             }
