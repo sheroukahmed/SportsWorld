@@ -20,9 +20,7 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(didTapLongPress))
         longPressRecognizer.minimumPressDuration = 0.05
         longPressRecognizer.cancelsTouchesInView = false
@@ -84,11 +82,12 @@ class SportsCollectionViewController: UICollectionViewController, UICollectionVi
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
+        // Initial state before animation
         cell.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
         cell.alpha = 0.2
         
+        // Animation block
         UIView.animate(withDuration: 1.1, delay: 0.05 * Double(indexPath.row), options: .curveEaseInOut, animations: {
-            // Scale the cell back to its original size and set full opacity
             cell.transform = CGAffineTransform.identity
             cell.alpha = 1.0
         }, completion: nil)
